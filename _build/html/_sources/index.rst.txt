@@ -70,7 +70,7 @@ dealing with big data.
     and if the data is cached, then data could be read as fast as 3748 MB/second. `See this site for a
     discussion of this <https://superuser.com/questions/1173675/how-much-faster-is-memory-ram-compared-to-ssd-for-random-access/1173713>`_.
 
-There are two other factors in how our programs will run when dealing with big data. One factor is called
+There are a few other factors in how our programs will run when dealing with big data. One factor is called
 *Computational Complexity* and it is the study of how efficiently our programs are written. Nothing, not
 even the fastest CPU, can overcome a poorly written program. We must write our programs efficiently and in
 terms of computational complexity that means to be aware of any loops you write in a program.
