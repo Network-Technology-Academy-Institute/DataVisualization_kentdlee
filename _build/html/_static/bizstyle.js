@@ -36,6 +36,6 @@ $(window).resize(function(){
         $("li.nav-item-0 a").text("Top");
     }
     else {
-        $("li.nav-item-0 a").text("Data Visualization  documentation");
+        $("li.nav-item-0 a").text("Data Visualization by Kent D. Lee (and others)");
     }
 });

@@ -98,7 +98,7 @@ html_static_path = ['_static']
 #
 # html_sidebars = {}
 
-
+html_title = 'Data Visualization by Kent D. Lee (and others)'
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
@@ -129,7 +129,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'DataVisualization.tex', 'Data Visualization Documentation',
+    (master_doc, 'DataVisualization.tex', 'Data Visualization',
      'Kent D. Lee', 'manual'),
 ]
 
@@ -139,7 +139,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'datavisualization', 'Data Visualization Documentation',
+    (master_doc, 'datavisualization', 'Data Visualization',
      [author], 1)
 ]
 
