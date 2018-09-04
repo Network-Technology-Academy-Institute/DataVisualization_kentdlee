@@ -72,13 +72,24 @@ dealing with big data.
 
 There are two other factors in how our programs will run when dealing with big data. One factor is called
 *Computational Complexity* and it is the study of how efficiently our programs are written. Nothing, not
-even the fastest CPU, can overcome a poorly written program. We must write our programs efficiently and
-that means to be aware of any loops you write in a program and how many times you access a file on disk.
+even the fastest CPU, can overcome a poorly written program. We must write our programs efficiently and in
+terms of computational complexity that means to be aware of any loops you write in a program.
 
-The other big issue that affects the performance of our programs is what language the program is implemented
+We must also be concerned about issues like how many times you access a file on disk, how
+much of the main memory (RAM or DRAM) you are using in your program, and how often you move data back and
+forth from the disk into memory. Sometimes you may not even be aware that you are moving data from DRAM
+to disk because of something called virtual memory that uses the disk to hold the contents of DRAM when
+you don't have enough DRAM to contain all the data in your program at one time.
+
+Another big issue that affects the performance of our programs is what language the program is implemented
 with. We will write Python code, but whenever possible we should rely on library code to do something for
 us rather than writing Python code to do it ourselves. Libraries are often implemented in C and run much
 faster than Python code.
+
+All of these considerations factor into the performance of our programs. And often times it is a job
+that is best left to experts in the field, but sometimes writing our own code is unavoidable. Much of
+the recent work in Data Science has been toward optimizing algorithms that deal with large amounts of
+data to get the absolute best performance possible.
 
 The Moral of the Story
 ++++++++++++++++++++++++
