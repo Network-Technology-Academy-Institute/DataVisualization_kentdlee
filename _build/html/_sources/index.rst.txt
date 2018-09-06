@@ -10,6 +10,7 @@ Welcome to Data Visualization!
    :maxdepth: 2
    :caption: Contents:
 
+   notebooks/TheDataframe.ipynb
 
 Welcome to Data Visualization. In this course you learn how to manipulate and visualize data to learn from it.
 You learn from data when you are able to classify new instances or make predictions based on previous
@@ -46,12 +47,12 @@ dealing with large amounts of data. When we are ready to work with a large amoun
 cognizant of a few things about computers. CPUs are fastest. Memory is slower then a CPU but faster than a
 disk drive. Disk drives and accessing data over the internet are much slower than memory as depicted here.
 
-.. figure:: _static/memory.jpg
+.. figure:: https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter1/1_4_StorageDeviceHierarchy.jpg
 
 Caching can make some programs appear to run faster. A cache is a smaller (i.e. faster, more expensive)
 memory that can be used to hold data that the computer thinks has a reasonable chance of being used soon.
 
-.. figure:: _static/caching.png
+.. figure:: https://qph.fs.quoracdn.net/main-qimg-64d592b11dc2b5c990fc6e10e9396b93.webp
 
 Here are some sources of information about Computer Architecture and how it affects the performance of
 dealing with big data.
@@ -104,9 +105,83 @@ Thankfully, there are many modules
 that have now been written to be as efficient as possible when dealing with large amounts of data. We
 will be learning about several of these modules or libraries this semester.
 
+Data Science
+---------------
+
+What is Data Science?
+
+.. figure:: https://cdn-images-1.medium.com/max/1000/1*mgXvzNcwfpnBawI6XTkVRg.png
+
+Data Science starts with data. A good resource of data can be found at these two sites.
+
+* `http://bigdata-madesimple.com/70-amazing-and-free-data-sources-for-data-visualization/ <http://bigdata-madesimple.com/70-amazing-and-free-data-sources-for-data-visualization/>`_
+* `http://kaggle.com <http://kaggle.com>`_
+
+Munging Data with Python
+--------------------------
+
+Consider the Avocado data set which can be found on Kaggle here.
+
+`https://www.kaggle.com/neuromusic/avocado-prices#avocado.csv <https://www.kaggle.com/neuromusic/avocado-prices#avocado.csv>`_
+
+You can download this data set from here.
+
+`http://cs.luther.edu/~leekent/avocado.csv <http://cs.luther.edu/~leekent/avocado.csv>`_
+
+This is a CSV (Comma Separated Values) file. It can be read by a Python program like the one below. The
+file and the program need to be saved in the same folder or directory to run this program.
+
+Note the use of the *split* method below with a comma as the separator.
+
+.. code-block:: python
+
+    def main():
+        file = open("avocado.csv")
+        for line in file:
+            x = line.strip()
+            lst = x.split(",")
+            print(lst)
 
 
+    if __name__ == "__main__":
+        main()
 
+
+The file can also be read from the internet directly if you know the URL. The urllib.request module
+is a Python3 module that allows you to open a file on the web. When the file is downloaded it is
+in unicode format. So, *decode* must be called on anything that is read in this format.
+
+Take a look at the code below. It contains some extra code for taking apart the fields in a CSV file
+and then putting them back together. In between taking the CSV records apart and putting them back
+together you can do any processing that you might need to do to get your data ready for some further
+analysis.
+
+.. code-block:: python
+
+    import urllib.request
+
+    def main():
+        file = urllib.request.urlopen("http://cs.luther.edu/~leekent/avocado.csv")
+        for line in file:
+            x = line.strip()
+            lst = x.decode('utf-8').split(",")
+            # Fix anything that needs fixing in the data.
+            # Your code goes here for fixing/gathering data.
+            # Then you start rebuilding the string to recreate the fixed up file.
+            lst = [x+"," for x in lst]
+            # Write a new file? Print will work if you redirect output.
+            # The [:-1] on the resulting string removes the last comma.
+            print("".join(lst)[:-1])
+
+
+    if __name__ == "__main__":
+        main()
+
+
+The DataFrame
+-----------------
+We start by learning to use notebooks and build dataframes in Pandas. `Take a look at this
+example of creating a dataframe <notebooks/TheDataframe.ipynb>`_.
 
 
 Indices and tables

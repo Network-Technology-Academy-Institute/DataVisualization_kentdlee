@@ -16,6 +16,7 @@
     <script type="text/javascript" src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting to Know the Dataframe" href="notebooks/TheDataframe.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <!--[if lt IE 9]>
     <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
@@ -27,6 +28,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="notebooks/TheDataframe.html" title="Getting to Know the Dataframe"
+             accesskey="N">next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">Data Visualization by Kent D. Lee (and others)</a> &#187;</li> 
       </ul>
     </div>
@@ -40,11 +44,17 @@
 <li><a class="reference internal" href="#the-moral-of-the-story">The Moral of the Story</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#data-science">Data Science</a></li>
+<li><a class="reference internal" href="#munging-data-with-python">Munging Data with Python</a></li>
+<li><a class="reference internal" href="#the-dataframe">The DataFrame</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
+  <h4>Next topic</h4>
+  <p class="topless"><a href="notebooks/TheDataframe.html"
+                        title="next chapter">Getting to Know the Dataframe</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -75,6 +85,10 @@
   <div class="section" id="welcome-to-data-visualization">
 <h1>Welcome to Data Visualization!<a class="headerlink" href="#welcome-to-data-visualization" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/TheDataframe.html">Getting to Know the Dataframe</a></li>
+</ul>
 </div>
 <p>Welcome to Data Visualization. In this course you learn how to manipulate and visualize data to learn from it.
 You learn from data when you are able to classify new instances or make predictions based on previous
@@ -112,12 +126,12 @@ dealing with large amounts of data. When we are ready to work with a large amoun
 cognizant of a few things about computers. CPUs are fastest. Memory is slower then a CPU but faster than a
 disk drive. Disk drives and accessing data over the internet are much slower than memory as depicted here.</p>
 <div class="figure">
-<img alt="_images/memory.jpg" src="_images/memory.jpg" />
+<img alt="https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter1/1_4_StorageDeviceHierarchy.jpg" src="https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter1/1_4_StorageDeviceHierarchy.jpg" />
 </div>
 <p>Caching can make some programs appear to run faster. A cache is a smaller (i.e. faster, more expensive)
 memory that can be used to hold data that the computer thinks has a reasonable chance of being used soon.</p>
 <div class="figure">
-<img alt="_images/caching.png" src="_images/caching.png" />
+<img alt="https://qph.fs.quoracdn.net/main-qimg-64d592b11dc2b5c990fc6e10e9396b93.webp" src="https://qph.fs.quoracdn.net/main-qimg-64d592b11dc2b5c990fc6e10e9396b93.webp" />
 </div>
 <p>Here are some sources of information about Computer Architecture and how it affects the performance of
 dealing with big data.</p>
@@ -165,6 +179,72 @@ that have now been written to be as efficient as possible when dealing with larg
 will be learning about several of these modules or libraries this semester.</p>
 </div>
 </div>
+<div class="section" id="data-science">
+<h2>Data Science<a class="headerlink" href="#data-science" title="Permalink to this headline">¶</a></h2>
+<p>What is Data Science?</p>
+<div class="figure">
+<img alt="https://cdn-images-1.medium.com/max/1000/1*mgXvzNcwfpnBawI6XTkVRg.png" src="https://cdn-images-1.medium.com/max/1000/1*mgXvzNcwfpnBawI6XTkVRg.png" />
+</div>
+<p>Data Science starts with data. A good resource of data can be found at these two sites.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://bigdata-madesimple.com/70-amazing-and-free-data-sources-for-data-visualization/">http://bigdata-madesimple.com/70-amazing-and-free-data-sources-for-data-visualization/</a></li>
+<li><a class="reference external" href="http://kaggle.com">http://kaggle.com</a></li>
+</ul>
+</div>
+<div class="section" id="munging-data-with-python">
+<h2>Munging Data with Python<a class="headerlink" href="#munging-data-with-python" title="Permalink to this headline">¶</a></h2>
+<p>Consider the Avocado data set which can be found on Kaggle here.</p>
+<p><a class="reference external" href="https://www.kaggle.com/neuromusic/avocado-prices#avocado.csv">https://www.kaggle.com/neuromusic/avocado-prices#avocado.csv</a></p>
+<p>You can download this data set from here.</p>
+<p><a class="reference external" href="http://cs.luther.edu/~leekent/avocado.csv">http://cs.luther.edu/~leekent/avocado.csv</a></p>
+<p>This is a CSV (Comma Separated Values) file. It can be read by a Python program like the one below. The
+file and the program need to be saved in the same folder or directory to run this program.</p>
+<p>Note the use of the <em>split</em> method below with a comma as the separator.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;avocado.csv&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">lst</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The file can also be read from the internet directly if you know the URL. The urllib.request module
+is a Python3 module that allows you to open a file on the web. When the file is downloaded it is
+in unicode format. So, <em>decode</em> must be called on anything that is read in this format.</p>
+<p>Take a look at the code below. It contains some extra code for taking apart the fields in a CSV file
+and then putting them back together. In between taking the CSV records apart and putting them back
+together you can do any processing that you might need to do to get your data ready for some further
+analysis.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://cs.luther.edu/~leekent/avocado.csv&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">lst</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="c1"># Fix anything that needs fixing in the data.</span>
+        <span class="c1"># Your code goes here for fixing/gathering data.</span>
+        <span class="c1"># Then you start rebuilding the string to recreate the fixed up file.</span>
+        <span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="s2">&quot;,&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">]</span>
+        <span class="c1"># Write a new file? Print will work if you redirect output.</span>
+        <span class="c1"># The [:-1] on the resulting string removes the last comma.</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lst</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-dataframe">
+<h2>The DataFrame<a class="headerlink" href="#the-dataframe" title="Permalink to this headline">¶</a></h2>
+<p>We start by learning to use notebooks and build dataframes in Pandas. <a class="reference internal" href="notebooks/TheDataframe.html"><span class="doc">Take a look at this
+example of creating a dataframe</span></a>.</p>
+</div>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
@@ -187,6 +267,9 @@ will be learning about several of these modules or libraries this semester.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="notebooks/TheDataframe.html" title="Getting to Know the Dataframe"
+             >next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">Data Visualization by Kent D. Lee (and others)</a> &#187;</li> 
       </ul>
     </div>
