@@ -223,7 +223,9 @@ This library is very
 popular and is used widely for data acquisition.
 
 The Requests library can be used for screen scraping. See this tutorial on `Screen Scraping with the
-Requests Library <https://docs.python-guide.org/scenarios/scrape/>`_ for help on doing this.
+Requests Library <https://docs.python-guide.org/scenarios/scrape/>`_ for help on doing this. The other
+common framework for screen scraping is called `BeautifulSoup <https://www.crummy.com/software/BeautifulSoup/bs4/doc/>`_.
+
 
 Another use of the Requests Library is for accessing API's on the web. An API is an Application
 Programming Interface. A Web-based API is generally implemented as a RESTful API. RESTful interfaces
@@ -237,7 +239,8 @@ Exercise 2
 +++++++++++++
 
 Pose a question. For instance, "Do increases in Avocado consumption predict increases in home sales?"
-Write some screen scraper code, using the Requests Library, to gather information to help answer your question (not this avocado/home sales question, but your own question). Place the collected
+Write some screen scraper code, using the Requests Library and/or BeautifulSoup,
+to gather information to help answer your question (not this avocado/home sales question, but your own question). Place the collected
 data in a CSV file with proper headings. Describe the question, the collected data, and the program
 used to collect the information.
 
