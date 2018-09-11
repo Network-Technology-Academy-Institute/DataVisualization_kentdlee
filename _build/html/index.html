@@ -45,8 +45,14 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#data-science">Data Science</a></li>
-<li><a class="reference internal" href="#munging-data-with-python">Munging Data with Python</a></li>
+<li><a class="reference internal" href="#the-data-science-life-cycle">The Data Science Life Cycle</a></li>
 <li><a class="reference internal" href="#the-dataframe">The DataFrame</a></li>
+<li><a class="reference internal" href="#munging-data-with-python">Munging Data with Python</a></li>
+<li><a class="reference internal" href="#data-acquisition">Data Acquisition</a><ul>
+<li><a class="reference internal" href="#exercise-2">Exercise 2</a></li>
+<li><a class="reference internal" href="#exercise-3">Exercise 3</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
@@ -191,8 +197,40 @@ will be learning about several of these modules or libraries this semester.</p>
 <li><a class="reference external" href="http://kaggle.com">http://kaggle.com</a></li>
 </ul>
 </div>
+<div class="section" id="the-data-science-life-cycle">
+<h2>The Data Science Life Cycle<a class="headerlink" href="#the-data-science-life-cycle" title="Permalink to this headline">¶</a></h2>
+<p>Applying Data Science begins with a question. That is the most important part of data science, asking questions.
+For many businesses the question probably revolves around revenue. Questions might be:</p>
+<ul class="simple">
+<li>Is there a more efficient way of doing this?</li>
+<li>What’s the next big thing that we should be focusing on?</li>
+<li>Did we do a good job?</li>
+<li>How can we improve our product?</li>
+<li>How can we do it faster?</li>
+</ul>
+<p>Questions like these are hard to answer and to answer them requires data to back up any claims that are
+made. Asking a good question is difficult. Gathering the data to answer the question is at least ten
+times harder. Most of the work in Data Science is in data acquisition.</p>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/lifecycle">Microsoft has a good website detailing the lifecycle of a Data Science project</a>. You should
+take a look at this to understand the life cycle and in particular the data acquisition process described
+on that page.</p>
+<p>Building a pipeline for data acquisition means writing code that can be used to acquire, munge, and
+refresh the data as often as is necessary given the needs of the project. Automation of data acquisition
+for a project is our goal. We want to write code to allow us to push a button to refresh large data
+sets coming from multiple sources.</p>
+<p>Munging data refers to writing a program (Python is an excellent choice for this) that massages the data
+into a format that we can use in our data pipeline. The Pandas <em>Dataframe</em> has become very important
+in managing data for a project. We’ll first learn what a <em>Dataframe</em> is and how to build one.</p>
+</div>
+<div class="section" id="the-dataframe">
+<h2>The DataFrame<a class="headerlink" href="#the-dataframe" title="Permalink to this headline">¶</a></h2>
+<p>We start by learning to use notebooks and build dataframes in Pandas. <a class="reference internal" href="notebooks/TheDataframe.html"><span class="doc">Take a look at this
+example of creating a dataframe</span></a>.</p>
+</div>
 <div class="section" id="munging-data-with-python">
 <h2>Munging Data with Python<a class="headerlink" href="#munging-data-with-python" title="Permalink to this headline">¶</a></h2>
+<p>Munging is sometimes called <em>Data Wrangling</em> or <em>Massaging the Data</em>. All terms mean the same thing. When we
+get data from a source it is not always in the proper format for using all the tools that we want to use.</p>
 <p>Consider the Avocado data set which can be found on Kaggle here.</p>
 <p><a class="reference external" href="https://www.kaggle.com/neuromusic/avocado-prices#avocado.csv">https://www.kaggle.com/neuromusic/avocado-prices#avocado.csv</a></p>
 <p>You can download this data set from here.</p>
@@ -240,10 +278,34 @@ analysis.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="the-dataframe">
-<h2>The DataFrame<a class="headerlink" href="#the-dataframe" title="Permalink to this headline">¶</a></h2>
-<p>We start by learning to use notebooks and build dataframes in Pandas. <a class="reference internal" href="notebooks/TheDataframe.html"><span class="doc">Take a look at this
-example of creating a dataframe</span></a>.</p>
+<div class="section" id="data-acquisition">
+<h2>Data Acquisition<a class="headerlink" href="#data-acquisition" title="Permalink to this headline">¶</a></h2>
+<p>We don’t always get the data that we want in a file. Sometimes the data is available on the web and we need
+to build our own data table. In that case we might use the <a class="reference external" href="http://docs.python-requests.org/en/master/">Python Requests Library</a>.
+This library is very
+popular and is used widely for data acquisition.</p>
+<p>The Requests library can be used for screen scraping. See this tutorial on <a class="reference external" href="https://docs.python-guide.org/scenarios/scrape/">Screen Scraping with the
+Requests Library</a> for help on doing this.</p>
+<p>Another use of the Requests Library is for accessing API’s on the web. An API is an Application
+Programming Interface. A Web-based API is generally implemented as a RESTful API. RESTful interfaces
+are servers on the internet that accept URL requests and respond with data in much the same way a web
+server would respond to the request for an HTML page. However, the RESTful API service may respond with
+a CSV or JSON file as its result. <a href="#id1"><span class="problematic" id="id2">`Read this tutorial &lt;https://tutorialedge.net/python/python-http-requests-tutorial/`_</span></a>
+to get started using the Requests Library to read data from a RESTful source.</p>
+<div class="section" id="exercise-2">
+<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+<p>Pose a question. For instance, “Do increases in Avocado consumption predict increases in home sales?”
+Write some screen scraper code, using the Requests Library, to gather information to help answer your question (not this avocado/home sales question, but your own question). Place the collected
+data in a CSV file with proper headings. Describe the question, the collected data, and the program
+used to collect the information.</p>
+</div>
+<div class="section" id="exercise-3">
+<h3>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
+<p>Pose a question and query a RESTful API to gather information about the answer to that question. Use the
+Requests Library to gather the information from the API and put it into a CSV file. In the Python program
+write a comment at the top that indicates the question, the API being used, and the data that is being
+collected to answer the posed question.</p>
+</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">

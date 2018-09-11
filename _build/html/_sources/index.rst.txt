@@ -117,8 +117,45 @@ Data Science starts with data. A good resource of data can be found at these two
 * `http://bigdata-madesimple.com/70-amazing-and-free-data-sources-for-data-visualization/ <http://bigdata-madesimple.com/70-amazing-and-free-data-sources-for-data-visualization/>`_
 * `http://kaggle.com <http://kaggle.com>`_
 
+The Data Science Life Cycle
+-------------------------------
+
+Applying Data Science begins with a question. That is the most important part of data science, asking questions.
+For many businesses the question probably revolves around revenue. Questions might be:
+
+* Is there a more efficient way of doing this?
+* What's the next big thing that we should be focusing on?
+* Did we do a good job?
+* How can we improve our product?
+* How can we do it faster?
+
+Questions like these are hard to answer and to answer them requires data to back up any claims that are
+made. Asking a good question is difficult. Gathering the data to answer the question is at least ten
+times harder. Most of the work in Data Science is in data acquisition.
+
+`Microsoft has a good website detailing the lifecycle of a Data Science project <https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/lifecycle>`_. You should
+take a look at this to understand the life cycle and in particular the data acquisition process described
+on that page.
+
+Building a pipeline for data acquisition means writing code that can be used to acquire, munge, and
+refresh the data as often as is necessary given the needs of the project. Automation of data acquisition
+for a project is our goal. We want to write code to allow us to push a button to refresh large data
+sets coming from multiple sources.
+
+Munging data refers to writing a program (Python is an excellent choice for this) that massages the data
+into a format that we can use in our data pipeline. The Pandas *Dataframe* has become very important
+in managing data for a project. We'll first learn what a *Dataframe* is and how to build one.
+
+The DataFrame
+----------------
+
+We start by learning to use notebooks and build dataframes in Pandas. `Take a look at this
+example of creating a dataframe <notebooks/TheDataframe.ipynb>`_.
+
 Munging Data with Python
---------------------------
+---------------------------
+Munging is sometimes called *Data Wrangling* or *Massaging the Data*. All terms mean the same thing. When we
+get data from a source it is not always in the proper format for using all the tools that we want to use.
 
 Consider the Avocado data set which can be found on Kaggle here.
 
@@ -177,11 +214,39 @@ analysis.
     if __name__ == "__main__":
         main()
 
+Data Acquisition
+-------------------
 
-The DataFrame
------------------
-We start by learning to use notebooks and build dataframes in Pandas. `Take a look at this
-example of creating a dataframe <notebooks/TheDataframe.ipynb>`_.
+We don't always get the data that we want in a file. Sometimes the data is available on the web and we need
+to build our own data table. In that case we might use the `Python Requests Library <http://docs.python-requests.org/en/master/>`_.
+This library is very
+popular and is used widely for data acquisition.
+
+The Requests library can be used for screen scraping. See this tutorial on `Screen Scraping with the
+Requests Library <https://docs.python-guide.org/scenarios/scrape/>`_ for help on doing this.
+
+Another use of the Requests Library is for accessing API's on the web. An API is an Application
+Programming Interface. A Web-based API is generally implemented as a RESTful API. RESTful interfaces
+are servers on the internet that accept URL requests and respond with data in much the same way a web
+server would respond to the request for an HTML page. However, the RESTful API service may respond with
+a CSV or JSON file as its result. `Read this tutorial <https://tutorialedge.net/python/python-http-requests-tutorial/`_
+to get started using the Requests Library to read data from a RESTful source.
+
+Exercise 2
++++++++++++++
+
+Pose a question. For instance, "Do increases in Avocado consumption predict increases in home sales?"
+Write some screen scraper code, using the Requests Library, to gather information to help answer your question (not this avocado/home sales question, but your own question). Place the collected
+data in a CSV file with proper headings. Describe the question, the collected data, and the program
+used to collect the information.
+
+Exercise 3
+++++++++++++
+Pose a question and query a RESTful API to gather information about the answer to that question. Use the
+Requests Library to gather the information from the API and put it into a CSV file. In the Python program
+write a comment at the top that indicates the question, the API being used, and the data that is being
+collected to answer the posed question.
+
 
 
 Indices and tables
