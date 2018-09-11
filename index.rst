@@ -229,7 +229,8 @@ Another use of the Requests Library is for accessing API's on the web. An API is
 Programming Interface. A Web-based API is generally implemented as a RESTful API. RESTful interfaces
 are servers on the internet that accept URL requests and respond with data in much the same way a web
 server would respond to the request for an HTML page. However, the RESTful API service may respond with
-a CSV or JSON file as its result. `Read this tutorial <https://tutorialedge.net/python/python-http-requests-tutorial/`_
+a CSV or JSON file as its result.
+`Read this tutorial <https://tutorialedge.net/python/python-http-requests-tutorial/>`_
 to get started using the Requests Library to read data from a RESTful source.
 
 Exercise 2
