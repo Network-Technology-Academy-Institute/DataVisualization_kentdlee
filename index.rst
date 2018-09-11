@@ -225,6 +225,7 @@ popular and is used widely for data acquisition.
 The Requests library can be used for screen scraping. See this tutorial on `Screen Scraping with the
 Requests Library <https://docs.python-guide.org/scenarios/scrape/>`_ for help on doing this. The other
 common framework for screen scraping is called `BeautifulSoup <https://www.crummy.com/software/BeautifulSoup/bs4/doc/>`_.
+You can `work through a tutorial on BeautifulSoup by clicking here <https://www.dataquest.io/blog/web-scraping-tutorial-python/>`_.
 
 
 Another use of the Requests Library is for accessing API's on the web. An API is an Application
