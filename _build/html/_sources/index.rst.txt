@@ -10,7 +10,6 @@ Welcome to Data Visualization!
    :maxdepth: 2
    :caption: Contents:
 
-   notebooks/TheDataframe.ipynb
 
 Welcome to Data Visualization. In this course you learn how to manipulate and visualize data to learn from it.
 You learn from data when you are able to classify new instances or make predictions based on previous
@@ -112,10 +111,11 @@ What is Data Science?
 
 .. figure:: https://cdn-images-1.medium.com/max/1000/1*mgXvzNcwfpnBawI6XTkVRg.png
 
-Data Science starts with data. A good resource of data can be found at these two sites.
+Data Science starts with data. Good resources for data can be found at these sites.
 
 * `http://bigdata-madesimple.com/70-amazing-and-free-data-sources-for-data-visualization/ <http://bigdata-madesimple.com/70-amazing-and-free-data-sources-for-data-visualization/>`_
 * `http://kaggle.com <http://kaggle.com>`_
+* `Google Dataset Search <http://toolbox.google.com/datasetsearch>`_
 
 The Data Science Life Cycle
 -------------------------------
@@ -235,6 +235,8 @@ server would respond to the request for an HTML page. However, the RESTful API s
 a CSV or JSON file as its result.
 `Read this tutorial <https://tutorialedge.net/python/python-http-requests-tutorial/>`_
 to get started using the Requests Library to read data from a RESTful source.
+
+You might need to see how to `access data via an xpath <notebooks/ParsingHTMLandusingXPath.ipynb>`_.
 
 Exercise 2
 +++++++++++++
