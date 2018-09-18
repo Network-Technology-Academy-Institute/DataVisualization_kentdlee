@@ -238,6 +238,21 @@ to get started using the Requests Library to read data from a RESTful source.
 
 You might need to see how to `access data via an xpath <notebooks/ParsingHTMLandusingXPath.ipynb>`_.
 
+Building a Dataset with a Webcrawler
++++++++++++++++++++++++++++++++++++++++
+
+`This tutorial takes you through an example of building a website with a Webcrawler application <https://towardsdatascience.com/data-analytics-with-python-by-web-scraping-illustration-with-cia-world-factbook-abbdaa687a84>`_. This can
+work sometimes, but it depends on the website you are trying to access as some websites will not
+want to provide information to a program. Programs written like this can *steal* another company's data
+in seconds. So, it is often the case that webcrawler applications get flagged and webserver deny access
+to them. The tutorial provide here is not subject to these problems.
+
+Reading a JSON file to build a Dataframe
+++++++++++++++++++++++++++++++++++++++++++
+
+Reading JSON data is another skill you need as a data scientist. `This tutorial <https://www.dataquest.io/blog/python-json-tutorial/>`_ provides
+a good introduction to reading JSON in your data acquisition program.
+
 Exercise 2
 +++++++++++++
 
@@ -254,7 +269,12 @@ Requests Library to gather the information from the API and put it into a CSV fi
 write a comment at the top that indicates the question, the API being used, and the data that is being
 collected to answer the posed question.
 
+Exercise 4
+++++++++++++=
 
+Pose a question that you need to gather a large dataset to either prove or disprove. Then go to the
+web and find data that supports or disproves your hypothesis. You may use JSON data, XML data, a
+webcrawler, or any means necessary to get acquire the data that you need. 
 
 Indices and tables
 ==================

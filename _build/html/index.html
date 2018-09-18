@@ -45,6 +45,8 @@
 <li><a class="reference internal" href="#the-dataframe">The DataFrame</a></li>
 <li><a class="reference internal" href="#munging-data-with-python">Munging Data with Python</a></li>
 <li><a class="reference internal" href="#data-acquisition">Data Acquisition</a><ul>
+<li><a class="reference internal" href="#building-a-dataset-with-a-webcrawler">Building a Dataset with a Webcrawler</a></li>
+<li><a class="reference internal" href="#reading-a-json-file-to-build-a-dataframe">Reading a JSON file to build a Dataframe</a></li>
 <li><a class="reference internal" href="#exercise-2">Exercise 2</a></li>
 <li><a class="reference internal" href="#exercise-3">Exercise 3</a></li>
 </ul>
@@ -286,6 +288,19 @@ a CSV or JSON file as its result.
 <a class="reference external" href="https://tutorialedge.net/python/python-http-requests-tutorial/">Read this tutorial</a>
 to get started using the Requests Library to read data from a RESTful source.</p>
 <p>You might need to see how to <a class="reference internal" href="notebooks/ParsingHTMLandusingXPath.html"><span class="doc">access data via an xpath</span></a>.</p>
+<div class="section" id="building-a-dataset-with-a-webcrawler">
+<h3>Building a Dataset with a Webcrawler<a class="headerlink" href="#building-a-dataset-with-a-webcrawler" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://towardsdatascience.com/data-analytics-with-python-by-web-scraping-illustration-with-cia-world-factbook-abbdaa687a84">This tutorial takes you through an example of building a website with a Webcrawler application</a>. This can
+work sometimes, but it depends on the website you are trying to access as some websites will not
+want to provide information to a program. Programs written like this can <em>steal</em> another company’s data
+in seconds. So, it is often the case that webcrawler applications get flagged and webserver deny access
+to them. The tutorial provide here is not subject to these problems.</p>
+</div>
+<div class="section" id="reading-a-json-file-to-build-a-dataframe">
+<h3>Reading a JSON file to build a Dataframe<a class="headerlink" href="#reading-a-json-file-to-build-a-dataframe" title="Permalink to this headline">¶</a></h3>
+<p>Reading JSON data is another skill you need as a data scientist. <a class="reference external" href="https://www.dataquest.io/blog/python-json-tutorial/">This tutorial</a> provides
+a good introduction to reading JSON in your data acquisition program.</p>
+</div>
 <div class="section" id="exercise-2">
 <h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
 <p>Pose a question. For instance, “Do increases in Avocado consumption predict increases in home sales?”
@@ -300,6 +315,11 @@ used to collect the information.</p>
 Requests Library to gather the information from the API and put it into a CSV file. In the Python program
 write a comment at the top that indicates the question, the API being used, and the data that is being
 collected to answer the posed question.</p>
+<p>Exercise 4
+++++++++++++=</p>
+<p>Pose a question that you need to gather a large dataset to either prove or disprove. Then go to the
+web and find data that supports or disproves your hypothesis. You may use JSON data, XML data, a
+webcrawler, or any means necessary to get acquire the data that you need.</p>
 </div>
 </div>
 </div>
