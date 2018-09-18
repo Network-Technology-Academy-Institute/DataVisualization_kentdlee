@@ -270,11 +270,11 @@ write a comment at the top that indicates the question, the API being used, and 
 collected to answer the posed question.
 
 Exercise 4
-++++++++++++=
+++++++++++++
 
 Pose a question that you need to gather a large dataset to either prove or disprove. Then go to the
 web and find data that supports or disproves your hypothesis. You may use JSON data, XML data, a
-webcrawler, or any means necessary to get acquire the data that you need. 
+webcrawler, or any means necessary to get acquire the data that you need.
 
 Indices and tables
 ==================
