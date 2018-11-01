@@ -42,14 +42,21 @@
 </li>
 <li><a class="reference internal" href="#data-science">Data Science</a></li>
 <li><a class="reference internal" href="#the-data-science-life-cycle">The Data Science Life Cycle</a></li>
+<li><a class="reference internal" href="#visualization-workflow">Visualization Workflow</a></li>
+<li><a class="reference internal" href="#data-acquisition">Data Acquisition</a></li>
 <li><a class="reference internal" href="#the-dataframe">The DataFrame</a></li>
 <li><a class="reference internal" href="#munging-data-with-python">Munging Data with Python</a></li>
-<li><a class="reference internal" href="#data-acquisition">Data Acquisition</a><ul>
+<li><a class="reference internal" href="#id1">Data Acquisition</a><ul>
 <li><a class="reference internal" href="#building-a-dataset-with-a-webcrawler">Building a Dataset with a Webcrawler</a></li>
 <li><a class="reference internal" href="#reading-a-json-file-to-build-a-dataframe">Reading a JSON file to build a Dataframe</a></li>
 <li><a class="reference internal" href="#exercise-2">Exercise 2</a></li>
 <li><a class="reference internal" href="#exercise-3">Exercise 3</a></li>
 <li><a class="reference internal" href="#exercise-4">Exercise 4</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#common-graph-types">Common Graph Types</a><ul>
+<li><a class="reference internal" href="#stacked-area-plots">Stacked Area Plots</a></li>
+<li><a class="reference internal" href="#box-and-whisker-plots">Box and Whisker Plots</a></li>
 </ul>
 </li>
 </ul>
@@ -91,10 +98,13 @@
 <p>Welcome to Data Visualization. In this course you learn how to manipulate and visualize data to learn from it.
 You learn from data when you are able to classify new instances or make predictions based on previous
 experience. We’ll be studying many example of data visualization and we’ll look at getting data into the right format to
-be analyzed. We’ll start with some Python programming.</p>
+be analyzed.</p>
+<p>An excellent textbook is “Data Visualisation: A Handbook for Data Driven Design” by Andy Kirk. The text
+covers many of the principles and ideas necessary for good data analysis and visualization. This website
+will outline some of his principles. More details can be found in his text.</p>
 <div class="section" id="python-programming">
 <h2>Python Programming<a class="headerlink" href="#python-programming" title="Permalink to this headline">¶</a></h2>
-<p>Please take a look at these videos on Python programming. Watch them up through the video on reading XML files
+<p>We’ll start with some Python programming. Please take a look at these videos on Python programming. Watch them up through the video on reading XML files
 in chapter 4. You can also consult the following websites for additional background on programming with
 Python.</p>
 <blockquote>
@@ -106,7 +116,7 @@ Python.</p>
 <li><a class="reference external" href="http://interactivepython.org/runestone/static/thinkcspy/index.html">You might also find this online text to be useful</a></li>
 </ul>
 </div></blockquote>
-<p>If you want an additional textbook or textbooks on Python programming you can checkout my two texts. The
+<p>If you want an additional textbook or textbooks on Python programming you can check out my two texts. The
 first of these goes with the video lectures found above.</p>
 <blockquote>
 <div><ul class="simple">
@@ -114,8 +124,9 @@ first of these goes with the video lectures found above.</p>
 <li><a class="reference external" href="https://www.amazon.com/Structures-Algorithms-Undergraduate-Computer-Science/dp/3319130714/ref=pd_sim_14_1?_encoding=UTF8&amp;pd_rd_i=3319130714&amp;pd_rd_r=43ee148a-aff3-11e8-ab28-01ad97aa66bb&amp;pd_rd_w=gfZsy&amp;pd_rd_wg=NhjP4&amp;pf_rd_i=desktop-dp-sims&amp;pf_rd_m=ATVPDKIKX0DER&amp;pf_rd_p=18bb0b78-4200-49b9-ac91-f141d61a1780&amp;pf_rd_r=6PP30YNX074T4S2FNGCP&amp;pf_rd_s=desktop-dp-sims&amp;pf_rd_t=40701&amp;psc=1&amp;refRID=6PP30YNX074T4S2FNGCP">Data Structures and Algorithms with Python</a></li>
 </ul>
 </div></blockquote>
-<p>You want to get good at string manipulation, reading and writing XML files, and working with lists and dictionaries.
-You need to also be good at reading and writing files.</p>
+<p>You want to get good at string manipulation, reading and writing XML files, and working with lists and dictionaries. Reading
+JSON data, Beautiful Soup, and sending HTML requests with Python will be valuable skills to learn during
+data collection. You need to also be good at reading and writing files.</p>
 </div>
 <div class="section" id="computer-architecture-and-performance">
 <h2>Computer Architecture and Performance<a class="headerlink" href="#computer-architecture-and-performance" title="Permalink to this headline">¶</a></h2>
@@ -207,6 +218,40 @@ times harder. Most of the work in Data Science is in data acquisition.</p>
 <p><a class="reference external" href="https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/lifecycle">Microsoft has a good website detailing the lifecycle of a Data Science project</a>. You should
 take a look at this to understand the life cycle and in particular the data acquisition process described
 on that page.</p>
+</div>
+<div class="section" id="visualization-workflow">
+<h2>Visualization Workflow<a class="headerlink" href="#visualization-workflow" title="Permalink to this headline">¶</a></h2>
+<p>It is important to develop a visualization workflow. This workflow should be repeated (and improved on) with
+each project. The process of developing a visualization is that of developing a compelling story/narrative
+around the data. To be effective in generating this narrative, you need to observe the following.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Be pragmatic.</li>
+<li>Reduce the randomness of your approach.</li>
+<li>Protect experimentation.</li>
+<li>Facilitate adaptability and iteration.</li>
+<li>Develop a repeatable process.</li>
+</ul>
+</div></blockquote>
+<p>To be successful using these principles, you need to take notes and use pen and paper to sketch out what
+you intend to do. Note taking is important because creative thoughts come at odd times and need to be
+written down to be available to you when you have time to build upon them. Manage your time and resources
+well, but leave time for creative thinking. Sometimes pressures may cause you to develop some rules-of-thumb
+for finding answers to some questions.</p>
+<p>Be sure to communicate with your audience and stakeholders. Do your research. Pay attention to detail. Be
+honest with yourself. And above all else, <strong>learn</strong>. We all need to work at <strong>learning</strong> as this
+is a rapidly expanding field and you need to stay current.</p>
+<p>So, here are some steps to take in developing this workflow.</p>
+<ol class="arabic simple">
+<li>Formulate a brief - According to Andy Kirk, a brief represents a set of expectations and captures all the relevant information about a task or project.</li>
+<li>Start from curiosity. It might be your curiosity. It might be the curiosity of the stakeholder, your audience, or other potential intrigue of yet unidentified individuals.</li>
+<li>Identify your audience. The idea of intrigue should be not only your intrigue. Your job is to create intrigue in your audience. This draws people in to the narrative and gives them a goal in understand your data visualization. Often presenting a question that is answered (at least in part) in the data can help create that intrigue.</li>
+<li>Understand your contraints. Time constraints, tool constraints, All your constraints will factor into what you end up doing.</li>
+<li>Understand how the work will be consumed. You especially want to know the frequency with which this visualization will need to be repeated. If it needs to be repeated frequently, the it should be as automated a process as possible. More attention to the process may be necessary if it will be frequently reproduced.</li>
+</ol>
+</div>
+<div class="section" id="data-acquisition">
+<h2>Data Acquisition<a class="headerlink" href="#data-acquisition" title="Permalink to this headline">¶</a></h2>
 <p>Building a pipeline for data acquisition means writing code that can be used to acquire, munge, and
 refresh the data as often as is necessary given the needs of the project. Automation of data acquisition
 for a project is our goal. We want to write code to allow us to push a button to refresh large data
@@ -271,8 +316,8 @@ analysis.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="data-acquisition">
-<h2>Data Acquisition<a class="headerlink" href="#data-acquisition" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>Data Acquisition<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>We don’t always get the data that we want in a file. Sometimes the data is available on the web and we need
 to build our own data table. In that case we might use the <a class="reference external" href="http://docs.python-requests.org/en/master/">Python Requests Library</a>.
 This library is very
@@ -300,7 +345,9 @@ to them. The tutorial provide here is not subject to these problems.</p>
 <div class="section" id="reading-a-json-file-to-build-a-dataframe">
 <h3>Reading a JSON file to build a Dataframe<a class="headerlink" href="#reading-a-json-file-to-build-a-dataframe" title="Permalink to this headline">¶</a></h3>
 <p>Reading JSON data is another skill you need as a data scientist. <a class="reference external" href="https://www.dataquest.io/blog/python-json-tutorial/">This tutorial</a> provides
-a good introduction to reading JSON in your data acquisition program.</p>
+a good introduction to reading JSON in your data acquisition program. You should take a look at this
+notebook on how to install the ijson and possibly create your own environment in which to install
+it.</p>
 </div>
 <div class="section" id="exercise-2">
 <h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
@@ -322,6 +369,18 @@ collected to answer the posed question.</p>
 <p>Pose a question that you need to gather a large dataset to either prove or disprove. Then go to the
 web and find data that supports or disproves your hypothesis. You may use JSON data, XML data, a
 webcrawler, or any means necessary to get acquire the data that you need.</p>
+</div>
+</div>
+<div class="section" id="common-graph-types">
+<h2>Common Graph Types<a class="headerlink" href="#common-graph-types" title="Permalink to this headline">¶</a></h2>
+<p>Here are some guides to building various graphs.</p>
+<div class="section" id="stacked-area-plots">
+<h3>Stacked Area Plots<a class="headerlink" href="#stacked-area-plots" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="notebooks/Introduction to Plotting Exercise.html"><span class="doc">In this notebook</span></a> I work with the <a class="reference external" href="_static/movies.csv">movie database</a> to build a stacked area plot and a few other example graphs. Perhaps one of the most important parts of this notebook is in creating a pivot_table which takes columns from a DataFrame and builds a new DataFrame from it where the values in a column become columns in a new DataFrame.</p>
+</div>
+<div class="section" id="box-and-whisker-plots">
+<h3>Box and Whisker Plots<a class="headerlink" href="#box-and-whisker-plots" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="notebooks/Shared Bike Service Data.html"><span class="doc">In this notebook</span></a> you learn about Box and Whisker Plots and how they can be used to examine the same of data in a column.</p>
 </div>
 </div>
 </div>

@@ -14,12 +14,16 @@ Welcome to Data Visualization!
 Welcome to Data Visualization. In this course you learn how to manipulate and visualize data to learn from it.
 You learn from data when you are able to classify new instances or make predictions based on previous
 experience. We'll be studying many example of data visualization and we'll look at getting data into the right format to
-be analyzed. We'll start with some Python programming.
+be analyzed.
+
+An excellent textbook is "Data Visualisation: A Handbook for Data Driven Design" by Andy Kirk. The text
+covers many of the principles and ideas necessary for good data analysis and visualization. This website
+will outline some of his principles. More details can be found in his text.
 
 Python Programming
 ---------------------
 
-Please take a look at these videos on Python programming. Watch them up through the video on reading XML files
+We'll start with some Python programming. Please take a look at these videos on Python programming. Watch them up through the video on reading XML files
 in chapter 4. You can also consult the following websites for additional background on programming with
 Python.
 
@@ -29,14 +33,15 @@ Python.
   * `An online text on Python Programming <https://kentdlee.github.io/SCSI/build/html/index.html>`_
   * `You might also find this online text to be useful <http://interactivepython.org/runestone/static/thinkcspy/index.html>`_
 
-If you want an additional textbook or textbooks on Python programming you can checkout my two texts. The
+If you want an additional textbook or textbooks on Python programming you can check out my two texts. The
 first of these goes with the video lectures found above.
 
   * `Python Programming Fundamentals <https://www.amazon.com/Programming-Fundamentals-Undergraduate-Computer-Science/dp/1447166418>`_
   * `Data Structures and Algorithms with Python <https://www.amazon.com/Structures-Algorithms-Undergraduate-Computer-Science/dp/3319130714/ref=pd_sim_14_1?_encoding=UTF8&pd_rd_i=3319130714&pd_rd_r=43ee148a-aff3-11e8-ab28-01ad97aa66bb&pd_rd_w=gfZsy&pd_rd_wg=NhjP4&pf_rd_i=desktop-dp-sims&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=18bb0b78-4200-49b9-ac91-f141d61a1780&pf_rd_r=6PP30YNX074T4S2FNGCP&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=6PP30YNX074T4S2FNGCP>`_
 
-You want to get good at string manipulation, reading and writing XML files, and working with lists and dictionaries.
-You need to also be good at reading and writing files.
+You want to get good at string manipulation, reading and writing XML files, and working with lists and dictionaries. Reading
+JSON data, Beautiful Soup, and sending HTML requests with Python will be valuable skills to learn during
+data collection. You need to also be good at reading and writing files.
 
 Computer Architecture and Performance
 -----------------------------------------
@@ -136,6 +141,40 @@ times harder. Most of the work in Data Science is in data acquisition.
 `Microsoft has a good website detailing the lifecycle of a Data Science project <https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/lifecycle>`_. You should
 take a look at this to understand the life cycle and in particular the data acquisition process described
 on that page.
+
+Visualization Workflow
+------------------------
+
+It is important to develop a visualization workflow. This workflow should be repeated (and improved on) with
+each project. The process of developing a visualization is that of developing a compelling story/narrative
+around the data. To be effective in generating this narrative, you need to observe the following.
+
+  * Be pragmatic.
+  * Reduce the randomness of your approach.
+  * Protect experimentation.
+  * Facilitate adaptability and iteration.
+  * Develop a repeatable process.
+
+To be successful using these principles, you need to take notes and use pen and paper to sketch out what
+you intend to do. Note taking is important because creative thoughts come at odd times and need to be
+written down to be available to you when you have time to build upon them. Manage your time and resources
+well, but leave time for creative thinking. Sometimes pressures may cause you to develop some rules-of-thumb
+for finding answers to some questions.
+
+Be sure to communicate with your audience and stakeholders. Do your research. Pay attention to detail. Be
+honest with yourself. And above all else, **learn**. We all need to work at **learning** as this
+is a rapidly expanding field and you need to stay current.
+
+So, here are some steps to take in developing this workflow.
+
+#. Formulate a brief - According to Andy Kirk, a brief represents a set of expectations and captures all the relevant information about a task or project.
+#. Start from curiosity. It might be your curiosity. It might be the curiosity of the stakeholder, your audience, or other potential intrigue of yet unidentified individuals.
+#. Identify your audience. The idea of intrigue should be not only your intrigue. Your job is to create intrigue in your audience. This draws people in to the narrative and gives them a goal in understand your data visualization. Often presenting a question that is answered (at least in part) in the data can help create that intrigue.
+#. Understand your contraints. Time constraints, tool constraints, All your constraints will factor into what you end up doing.
+#. Understand how the work will be consumed. You especially want to know the frequency with which this visualization will need to be repeated. If it needs to be repeated frequently, the it should be as automated a process as possible. More attention to the process may be necessary if it will be frequently reproduced.
+
+Data Acquisition
+-----------------
 
 Building a pipeline for data acquisition means writing code that can be used to acquire, munge, and
 refresh the data as often as is necessary given the needs of the project. Automation of data acquisition
@@ -251,7 +290,9 @@ Reading a JSON file to build a Dataframe
 ++++++++++++++++++++++++++++++++++++++++++
 
 Reading JSON data is another skill you need as a data scientist. `This tutorial <https://www.dataquest.io/blog/python-json-tutorial/>`_ provides
-a good introduction to reading JSON in your data acquisition program.
+a good introduction to reading JSON in your data acquisition program. You should take a look at this
+notebook on how to install the ijson and possibly create your own environment in which to install
+it.
 
 Exercise 2
 +++++++++++++
@@ -275,6 +316,22 @@ Exercise 4
 Pose a question that you need to gather a large dataset to either prove or disprove. Then go to the
 web and find data that supports or disproves your hypothesis. You may use JSON data, XML data, a
 webcrawler, or any means necessary to get acquire the data that you need.
+
+
+Common Graph Types
+---------------------
+
+Here are some guides to building various graphs.
+
+Stacked Area Plots
+++++++++++++++++++++++++++++++
+
+`In this notebook <notebooks/Introduction\ to\ Plotting\ Exercise.ipynb>`_ I work with the `movie database <_static/movies.csv>`_ to build a stacked area plot and a few other example graphs. Perhaps one of the most important parts of this notebook is in creating a pivot_table which takes columns from a DataFrame and builds a new DataFrame from it where the values in a column become columns in a new DataFrame.
+
+Box and Whisker Plots
++++++++++++++++++++++++
+
+`In this notebook <notebooks/Shared\ Bike\ Service\ Data.ipynb>`_ you learn about Box and Whisker Plots and how they can be used to examine the same of data in a column.
 
 Indices and tables
 ==================

@@ -1,0 +1,466 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>I had to install ijson with “conda install -c conda-forge ijson” &#8212; Data Visualization by Kent D. Lee (and others)</title>
+    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Data Visualization by Kent D. Lee (and others)</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/notebooks/Building a Dataframe with JSON.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 9ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+</style>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-bash notranslate"><div class="highlight"><pre>
+<span></span>%%bash
+head rows.json
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{
+  &#34;meta&#34; : {
+    &#34;view&#34; : {
+      &#34;id&#34; : &#34;4mse-ku6q&#34;,
+      &#34;name&#34; : &#34;Traffic Violations&#34;,
+      &#34;averageRating&#34; : 0,
+      &#34;category&#34; : &#34;Public Safety&#34;,
+      &#34;createdAt&#34; : 1403103517,
+      &#34;description&#34; : &#34;This dataset contains traffic violation information from all electronic traffic violations issued in the County.  Any information that can be used to uniquely identify the vehicle, the vehicle owner or the officer issuing the violation will not be published.\r\n\r\nUpdate Frequency:  Daily&#34;,
+      &#34;displayType&#34; : &#34;table&#34;,
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-bash notranslate"><div class="highlight"><pre>
+<span></span>%%bash
+grep -E <span class="s1">&#39;^ {2}&quot;&#39;</span> rows.json
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+  &#34;meta&#34; : {
+  &#34;data&#34; : [ [ 2118167, &#34;EE8BC302-660F-48C4-B422-17427ECE821F&#34;, 2118167, 1482239054, &#34;498050&#34;, 1482239054, &#34;498050&#34;, null, &#34;2013-09-24T00:00:00&#34;, &#34;17:11:00&#34;, &#34;MCP&#34;, &#34;3rd district, Silver Spring&#34;, &#34;DRIVING VEHICLE ON HIGHWAY WITH SUSPENDED REGISTRATION&#34;, &#34;8804 FLOWER AVE&#34;, null, null, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;MD&#34;, &#34;02 - Automobile&#34;, &#34;2008&#34;, &#34;FORD&#34;, &#34;4S&#34;, &#34;BLACK&#34;, &#34;Citation&#34;, &#34;13-401(h)&#34;, &#34;Transportation Article&#34;, &#34;No&#34;, &#34;BLACK&#34;, &#34;M&#34;, &#34;TAKOMA PARK&#34;, &#34;MD&#34;, &#34;MD&#34;, &#34;A - Marked Patrol&#34;, [ null, null, null, null, null ] ]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-bash notranslate"><div class="highlight"><pre>
+<span></span>%%bash
+grep -E <span class="s1">&#39;^ {2,6}&quot;&#39;</span> rows.json
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+  &#34;meta&#34; : {
+    &#34;view&#34; : {
+      &#34;id&#34; : &#34;4mse-ku6q&#34;,
+      &#34;name&#34; : &#34;Traffic Violations&#34;,
+      &#34;averageRating&#34; : 0,
+      &#34;category&#34; : &#34;Public Safety&#34;,
+      &#34;createdAt&#34; : 1403103517,
+      &#34;description&#34; : &#34;This dataset contains traffic violation information from all electronic traffic violations issued in the County.  Any information that can be used to uniquely identify the vehicle, the vehicle owner or the officer issuing the violation will not be published.\r\n\r\nUpdate Frequency:  Daily&#34;,
+      &#34;displayType&#34; : &#34;table&#34;,
+      &#34;downloadCount&#34; : 91883,
+      &#34;hideFromCatalog&#34; : false,
+      &#34;hideFromDataJson&#34; : false,
+      &#34;iconUrl&#34; : &#34;fileId:r41tDc239M1FL75LFwXFKzFCWqr8mzMeMTYXiA24USM&#34;,
+      &#34;indexUpdatedAt&#34; : 1537435682,
+      &#34;newBackend&#34; : false,
+      &#34;numberOfComments&#34; : 0,
+      &#34;oid&#34; : 8890705,
+      &#34;provenance&#34; : &#34;official&#34;,
+      &#34;publicationAppendEnabled&#34; : false,
+      &#34;publicationDate&#34; : 1411040702,
+      &#34;publicationGroup&#34; : 1620779,
+      &#34;publicationStage&#34; : &#34;published&#34;,
+      &#34;rowClass&#34; : &#34;&#34;,
+      &#34;rowsUpdatedAt&#34; : 1537435421,
+      &#34;rowsUpdatedBy&#34; : &#34;ajn4-zy65&#34;,
+      &#34;tableId&#34; : 1722160,
+      &#34;totalTimesRated&#34; : 0,
+      &#34;viewCount&#34; : 33067,
+      &#34;viewLastModified&#34; : 1494270268,
+      &#34;viewType&#34; : &#34;tabular&#34;,
+      &#34;columns&#34; : [ {
+      &#34;disabledFeatureFlags&#34; : [ &#34;allow_comments&#34; ],
+      &#34;grants&#34; : [ {
+      &#34;metadata&#34; : {
+      &#34;owner&#34; : {
+      &#34;query&#34; : {
+      &#34;rights&#34; : [ &#34;read&#34; ],
+      &#34;tableAuthor&#34; : {
+      &#34;tags&#34; : [ &#34;traffic&#34;, &#34;stop&#34;, &#34;violations&#34;, &#34;electronic issued.&#34; ],
+      &#34;flags&#34; : [ &#34;default&#34;, &#34;restorable&#34;, &#34;restorePossibleForType&#34; ]
+  &#34;data&#34; : [ [ 2118167, &#34;EE8BC302-660F-48C4-B422-17427ECE821F&#34;, 2118167, 1482239054, &#34;498050&#34;, 1482239054, &#34;498050&#34;, null, &#34;2013-09-24T00:00:00&#34;, &#34;17:11:00&#34;, &#34;MCP&#34;, &#34;3rd district, Silver Spring&#34;, &#34;DRIVING VEHICLE ON HIGHWAY WITH SUSPENDED REGISTRATION&#34;, &#34;8804 FLOWER AVE&#34;, null, null, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;No&#34;, &#34;MD&#34;, &#34;02 - Automobile&#34;, &#34;2008&#34;, &#34;FORD&#34;, &#34;4S&#34;, &#34;BLACK&#34;, &#34;Citation&#34;, &#34;13-401(h)&#34;, &#34;Transportation Article&#34;, &#34;No&#34;, &#34;BLACK&#34;, &#34;M&#34;, &#34;TAKOMA PARK&#34;, &#34;MD&#34;, &#34;MD&#34;, &#34;A - Marked Patrol&#34;, [ null, null, null, null, null ] ]
+</pre></div></div>
+</div>
+<div class="section" id="I-had-to-install-ijson-with-&quot;conda-install--c-conda-forge-ijson&quot;">
+<h1>I had to install ijson with “conda install -c conda-forge ijson”<a class="headerlink" href="#I-had-to-install-ijson-with-"conda-install--c-conda-forge-ijson"" title="Permalink to this headline">¶</a></h1>
+<p>This was found by googling “install ijson package”. It is possible to
+create your own environment and install in that if you don’t have write
+access to the anaconda library. If you need to create your own
+environment and install then follow these directions.</p>
+<ul class="simple">
+<li>Create your own environment -
+<a class="reference external" href="https://conda.io/docs/user-guide/tasks/manage-environments.html">https://conda.io/docs/user-guide/tasks/manage-environments.html</a></li>
+<li>Install in your own environment -
+<a class="reference external" href="https://conda.io/docs/user-guide/tasks/manage-pkgs.html">https://conda.io/docs/user-guide/tasks/manage-pkgs.html</a></li>
+</ul>
+<p>Be sure to activate your environment prior to starting jupyter notebook
+if you are going to run jupyter notebook on your own machine.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">ijson</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;rows.json&quot;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">ijson</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s1">&#39;meta.view.columns.item&#39;</span><span class="p">)</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">objects</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;id&#39;: -1, &#39;name&#39;: &#39;sid&#39;, &#39;dataTypeName&#39;: &#39;meta_data&#39;, &#39;fieldName&#39;: &#39;:sid&#39;, &#39;position&#39;: 0, &#39;renderTypeName&#39;: &#39;meta_data&#39;, &#39;format&#39;: {}, &#39;flags&#39;: [&#39;hidden&#39;]}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span><span class="p">[</span><span class="s2">&quot;fieldName&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">]</span>
+<span class="n">column_names</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[12]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[&#39;:sid&#39;,
+ &#39;:id&#39;,
+ &#39;:position&#39;,
+ &#39;:created_at&#39;,
+ &#39;:created_meta&#39;,
+ &#39;:updated_at&#39;,
+ &#39;:updated_meta&#39;,
+ &#39;:meta&#39;,
+ &#39;date_of_stop&#39;,
+ &#39;time_of_stop&#39;,
+ &#39;agency&#39;,
+ &#39;subagency&#39;,
+ &#39;description&#39;,
+ &#39;location&#39;,
+ &#39;latitude&#39;,
+ &#39;longitude&#39;,
+ &#39;accident&#39;,
+ &#39;belts&#39;,
+ &#39;personal_injury&#39;,
+ &#39;property_damage&#39;,
+ &#39;fatal&#39;,
+ &#39;commercial_license&#39;,
+ &#39;hazmat&#39;,
+ &#39;commercial_vehicle&#39;,
+ &#39;alcohol&#39;,
+ &#39;work_zone&#39;,
+ &#39;state&#39;,
+ &#39;vehicle_type&#39;,
+ &#39;year&#39;,
+ &#39;make&#39;,
+ &#39;model&#39;,
+ &#39;color&#39;,
+ &#39;violation_type&#39;,
+ &#39;charge&#39;,
+ &#39;article&#39;,
+ &#39;contributed_to_accident&#39;,
+ &#39;race&#39;,
+ &#39;gender&#39;,
+ &#39;driver_city&#39;,
+ &#39;driver_state&#39;,
+ &#39;dl_state&#39;,
+ &#39;arrest_type&#39;,
+ &#39;geolocation&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Data Visualization by Kent D. Lee (and others)</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Kent D. Lee.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
+    </div>
+  </body>
+</html>
