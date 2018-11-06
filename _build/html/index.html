@@ -54,6 +54,10 @@
 <li><a class="reference internal" href="#exercise-4">Exercise 4</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#building-a-website">Building a Website</a><ul>
+<li><a class="reference internal" href="#hosting-on-github-com">Hosting on Github.com</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#common-graph-types">Common Graph Types</a><ul>
 <li><a class="reference internal" href="#stacked-area-plots">Stacked Area Plots</a></li>
 <li><a class="reference internal" href="#box-and-whisker-plots">Box and Whisker Plots</a></li>
@@ -369,6 +373,138 @@ collected to answer the posed question.</p>
 <p>Pose a question that you need to gather a large dataset to either prove or disprove. Then go to the
 web and find data that supports or disproves your hypothesis. You may use JSON data, XML data, a
 webcrawler, or any means necessary to get acquire the data that you need.</p>
+</div>
+</div>
+<div class="section" id="building-a-website">
+<h2>Building a Website<a class="headerlink" href="#building-a-website" title="Permalink to this headline">¶</a></h2>
+<p>Building a website like this one is actually very easy with the help of sphinx. To begin, you
+open a terminal window and make a directory for yourself. Then you type <em>sphinx-quickstart</em> and
+follow the prompts as shown here. You can take defaults for yourself for most prompts. The project
+name should be your own project name and author is yourself of course.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Kent&#39;s Mac&gt; mkdir MyWebSite</span>
+<span class="go">Kent&#39;s Mac&gt; cd MyWebSite</span>
+<span class="go">Kent&#39;s Mac&gt; sphinx-quickstart</span>
+<span class="go">Welcome to the Sphinx 1.7.4 quickstart utility.</span>
+
+<span class="go">Please enter values for the following settings (just press Enter to</span>
+<span class="go">accept a default value, if one is given in brackets).</span>
+
+<span class="go">Selected root path: .</span>
+
+<span class="go">You have two options for placing the build directory for Sphinx output.</span>
+<span class="go">Either, you use a directory &quot;_build&quot; within the root path, or you separate</span>
+<span class="go">&quot;source&quot; and &quot;build&quot; directories within the root path.</span>
+<span class="gp">&gt;</span> Separate <span class="nb">source</span> and build directories <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>n<span class="o">]</span>:
+
+<span class="go">Inside the root directory, two more directories will be created; &quot;_templates&quot;</span>
+<span class="go">for custom HTML templates and &quot;_static&quot; for custom stylesheets and other static</span>
+<span class="go">files. You can enter another prefix (such as &quot;.&quot;) to replace the underscore.</span>
+<span class="gp">&gt;</span> Name prefix <span class="k">for</span> templates and static dir <span class="o">[</span>_<span class="o">]</span>:
+
+<span class="go">The project name will occur in several places in the built documentation.</span>
+<span class="gp">&gt;</span> Project name: My Website
+<span class="gp">&gt;</span> Author name<span class="o">(</span>s<span class="o">)</span>: Kent D. Lee
+<span class="gp">&gt;</span> Project release <span class="o">[]</span>:
+
+<span class="go">If the documents are to be written in a language other than English,</span>
+<span class="go">you can select a language here by its language code. Sphinx will then</span>
+<span class="go">translate text that it generates into that language.</span>
+
+<span class="go">For a list of supported codes, see</span>
+<span class="gp">http://sphinx-doc.org/config.html#</span>confval-language.
+<span class="gp">&gt;</span> Project language <span class="o">[</span>en<span class="o">]</span>:
+
+<span class="go">The file name suffix for source files. Commonly, this is either &quot;.txt&quot;</span>
+<span class="go">or &quot;.rst&quot;.  Only files with this suffix are considered documents.</span>
+<span class="gp">&gt;</span> Source file suffix <span class="o">[</span>.rst<span class="o">]</span>:
+
+<span class="go">One document is special in that it is considered the top node of the</span>
+<span class="go">&quot;contents tree&quot;, that is, it is the root of the hierarchical structure</span>
+<span class="go">of the documents. Normally, this is &quot;index&quot;, but if your &quot;index&quot;</span>
+<span class="go">document is a custom template, you can also set this to another filename.</span>
+<span class="gp">&gt;</span> Name of your master document <span class="o">(</span>without suffix<span class="o">)</span> <span class="o">[</span>index<span class="o">]</span>:
+
+<span class="go">Sphinx can also add configuration for epub output:</span>
+<span class="gp">&gt;</span> Do you want to use the epub builder <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>n<span class="o">]</span>:
+<span class="go">Indicate which of the following Sphinx extensions should be enabled:</span>
+<span class="gp">&gt;</span> autodoc: automatically insert docstrings from modules <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>n<span class="o">]</span>:
+<span class="gp">&gt;</span> doctest: automatically <span class="nb">test</span> code snippets in doctest blocks <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>n<span class="o">]</span>:
+<span class="gp">&gt;</span> intersphinx: link between Sphinx documentation of different projects <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>n<span class="o">]</span>:
+<span class="gp">&gt;</span> todo: write <span class="s2">&quot;todo&quot;</span> entries that can be shown or hidden on build <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>n<span class="o">]</span>:
+<span class="gp">&gt;</span> coverage: checks <span class="k">for</span> documentation coverage <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>n<span class="o">]</span>:
+<span class="gp">&gt;</span> imgmath: include math, rendered as PNG or SVG images <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>n<span class="o">]</span>:
+<span class="gp">&gt;</span> mathjax: include math, rendered in the browser by MathJax <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>n<span class="o">]</span>:
+<span class="gp">&gt;</span> ifconfig: conditional inclusion of content based on config values <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>n<span class="o">]</span>:
+<span class="gp">&gt;</span> viewcode: include links to the <span class="nb">source</span> code of documented Python objects <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>n<span class="o">]</span>:
+<span class="gp">&gt;</span> githubpages: create .nojekyll file to publish the document on GitHub pages <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>n<span class="o">]</span>:
+
+<span class="go">A Makefile and a Windows command file can be generated for you so that you</span>
+<span class="go">only have to run e.g. `make html&#39; instead of invoking sphinx-build</span>
+<span class="go">directly.</span>
+<span class="gp">&gt;</span> Create Makefile? <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>y<span class="o">]</span>:
+<span class="gp">&gt;</span> Create Windows <span class="nb">command</span> file? <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>y<span class="o">]</span>:
+
+<span class="go">Creating file ./conf.py.</span>
+<span class="go">Creating file ./index.rst.</span>
+<span class="go">Creating file ./Makefile.</span>
+<span class="go">Creating file ./make.bat.</span>
+
+<span class="go">Finished: An initial directory structure has been created.</span>
+
+<span class="go">You should now populate your master file ./index.rst and create other documentation</span>
+<span class="go">source files. Use the Makefile to build the docs, like so:</span>
+<span class="go">   make builder</span>
+<span class="go">where &quot;builder&quot; is one of the supported builders, e.g. html, latex or linkcheck.</span>
+
+<span class="go">Kent&#39;s Mac&gt;</span>
+</pre></div>
+</div>
+<p>You edit text according to the sphinx markdown language. Sphinx markdown is well-documented on the web.
+You can see examples of how sphinx pages are written if you go to <a class="reference external" href="https://github.com/kentdlee/SCSI">https://github.com/kentdlee/SCSI</a>.
+This repository has a <em>build</em> and a <em>source</em> directory. The <em>_source</em> directory contains the source file <em>index.rst</em>
+which is where the content is located. The <em>build</em> directory contains a subdirectory called <em>html</em> which
+can be copied to a webserver. The <em>html</em> directory would be renamed whatever you would want your site called.
+For instance, if you wanted to call it <em>MyWebSite</em> then you would copy the html directory into your <em>public_html</em>
+on your webserver and rename the html to <em>MyWebSite</em>.</p>
+<div class="section" id="hosting-on-github-com">
+<h3>Hosting on Github.com<a class="headerlink" href="#hosting-on-github-com" title="Permalink to this headline">¶</a></h3>
+<p>You can also host the website on Github.com. To do this, you’ll want to create an SSH key for transferring
+files to and from Github.com. On a Mac you can <a class="reference external" href="https://coolestguidesontheplanet.com/create-a-ssh-private-and-public-key-in-osx-10-11/">follow this guide to generate an SSH key</a>.
+This guide shows you how to create the .ssh directory, protect the .ssh directory, and then copy the public
+key to another computer. For Github.com you go to your account setting (top right corner of Github.com page after
+you sign in) and you go to <em>Settings</em>. Then click on <em>SSH and GPG keys</em>. Click the <em>New SSH key</em> button
+and past your public key into that directory.</p>
+<p>On a Windows machine, you need to <a class="reference external" href="https://git-scm.com/downloads">install git bash from here</a>. Then
+you can <a class="reference external" href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-windows">follow the directions here</a>
+to generate a key and add it to your Github.com account (see the link at the end of the page).</p>
+<p>After setting up a key on Github.com you can create a repository to hold your website. Create a normal
+repository, but in the settings for the repository change the section <em>GitHub Pages</em> to say that the source
+is on the master branch.</p>
+<p>In the <em>MyWebSite</em> directory you will need two files. You can create them by doing these commands.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Kent&#39;s Mac&gt; cat index.html</span>
+<span class="go">Kent&#39;s Mac&gt; &lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=build/html/index.html&quot; /&gt;</span>
+<span class="go">            &lt;!This is a redirection to the real URL&gt;</span>
+</pre></div>
+</div>
+<p>This file contains the redirect to your build/html/index.html directory. This redirect means that when
+someone loads this web page in the home directory of the project, it will redirect to the github.com
+webpage address for this page (i.e. in the build directory).</p>
+<p>There must be a file in the home directory of the website called .nojekyll. This tells GitHub.com not
+to process this webpage with jekyll which is another markdown formatter.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Kent&#39;s Mac&gt; cd MyWebSite</span>
+<span class="go">Kent&#39;s Mac&gt; touch .nojekyll</span>
+</pre></div>
+</div>
+<p>Finally, you can add the following lines into your Makefile. This will allow you to type <em>Make release</em> to
+send it to GitHub.com and the world</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">release: html</span>
+<span class="go">        git add .</span>
+<span class="go">        git commit -m &quot;latest changes&quot;</span>
+<span class="go">        git push -u origin master</span>
+<span class="go">        open &quot;https://userid.github.io/MyWebSite/&quot;</span>
+</pre></div>
+</div>
+<p>That should be it.</p>
 </div>
 </div>
 <div class="section" id="common-graph-types">

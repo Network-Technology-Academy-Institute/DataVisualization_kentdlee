@@ -317,6 +317,156 @@ Pose a question that you need to gather a large dataset to either prove or dispr
 web and find data that supports or disproves your hypothesis. You may use JSON data, XML data, a
 webcrawler, or any means necessary to get acquire the data that you need.
 
+Building a Website
+------------------
+
+Building a website like this one is actually very easy with the help of sphinx. To begin, you
+open a terminal window and make a directory for yourself. Then you type *sphinx-quickstart* and
+follow the prompts as shown here. You can take defaults for yourself for most prompts. The project
+name should be your own project name and author is yourself of course.
+
+.. code-block:: console
+
+    Kent's Mac> mkdir MyWebSite
+    Kent's Mac> cd MyWebSite
+    Kent's Mac> sphinx-quickstart
+    Welcome to the Sphinx 1.7.4 quickstart utility.
+
+    Please enter values for the following settings (just press Enter to
+    accept a default value, if one is given in brackets).
+
+    Selected root path: .
+
+    You have two options for placing the build directory for Sphinx output.
+    Either, you use a directory "_build" within the root path, or you separate
+    "source" and "build" directories within the root path.
+    > Separate source and build directories (y/n) [n]:
+
+    Inside the root directory, two more directories will be created; "_templates"
+    for custom HTML templates and "_static" for custom stylesheets and other static
+    files. You can enter another prefix (such as ".") to replace the underscore.
+    > Name prefix for templates and static dir [_]:
+
+    The project name will occur in several places in the built documentation.
+    > Project name: My Website
+    > Author name(s): Kent D. Lee
+    > Project release []:
+
+    If the documents are to be written in a language other than English,
+    you can select a language here by its language code. Sphinx will then
+    translate text that it generates into that language.
+
+    For a list of supported codes, see
+    http://sphinx-doc.org/config.html#confval-language.
+    > Project language [en]:
+
+    The file name suffix for source files. Commonly, this is either ".txt"
+    or ".rst".  Only files with this suffix are considered documents.
+    > Source file suffix [.rst]:
+
+    One document is special in that it is considered the top node of the
+    "contents tree", that is, it is the root of the hierarchical structure
+    of the documents. Normally, this is "index", but if your "index"
+    document is a custom template, you can also set this to another filename.
+    > Name of your master document (without suffix) [index]:
+
+    Sphinx can also add configuration for epub output:
+    > Do you want to use the epub builder (y/n) [n]:
+    Indicate which of the following Sphinx extensions should be enabled:
+    > autodoc: automatically insert docstrings from modules (y/n) [n]:
+    > doctest: automatically test code snippets in doctest blocks (y/n) [n]:
+    > intersphinx: link between Sphinx documentation of different projects (y/n) [n]:
+    > todo: write "todo" entries that can be shown or hidden on build (y/n) [n]:
+    > coverage: checks for documentation coverage (y/n) [n]:
+    > imgmath: include math, rendered as PNG or SVG images (y/n) [n]:
+    > mathjax: include math, rendered in the browser by MathJax (y/n) [n]:
+    > ifconfig: conditional inclusion of content based on config values (y/n) [n]:
+    > viewcode: include links to the source code of documented Python objects (y/n) [n]:
+    > githubpages: create .nojekyll file to publish the document on GitHub pages (y/n) [n]:
+
+    A Makefile and a Windows command file can be generated for you so that you
+    only have to run e.g. `make html' instead of invoking sphinx-build
+    directly.
+    > Create Makefile? (y/n) [y]:
+    > Create Windows command file? (y/n) [y]:
+
+    Creating file ./conf.py.
+    Creating file ./index.rst.
+    Creating file ./Makefile.
+    Creating file ./make.bat.
+
+    Finished: An initial directory structure has been created.
+
+    You should now populate your master file ./index.rst and create other documentation
+    source files. Use the Makefile to build the docs, like so:
+       make builder
+    where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
+
+    Kent's Mac>
+
+You edit text according to the sphinx markdown language. Sphinx markdown is well-documented on the web.
+You can see examples of how sphinx pages are written if you go to `https://github.com/kentdlee/SCSI <https://github.com/kentdlee/SCSI>`_.
+This repository has a *build* and a *source* directory. The *_source* directory contains the source file *index.rst*
+which is where the content is located. The *build* directory contains a subdirectory called *html* which
+can be copied to a webserver. The *html* directory would be renamed whatever you would want your site called.
+For instance, if you wanted to call it *MyWebSite* then you would copy the html directory into your *public_html*
+on your webserver and rename the html to *MyWebSite*.
+
+Hosting on Github.com
+++++++++++++++++++++++++
+
+You can also host the website on Github.com. To do this, you'll want to create an SSH key for transferring
+files to and from Github.com. On a Mac you can `follow this guide to generate an SSH key <https://coolestguidesontheplanet.com/create-a-ssh-private-and-public-key-in-osx-10-11/>`_.
+This guide shows you how to create the .ssh directory, protect the .ssh directory, and then copy the public
+key to another computer. For Github.com you go to your account setting (top right corner of Github.com page after
+you sign in) and you go to *Settings*. Then click on *SSH and GPG keys*. Click the *New SSH key* button
+and past your public key into that directory.
+
+On a Windows machine, you need to `install git bash from here <https://git-scm.com/downloads>`_. Then
+you can `follow the directions here <https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-windows>`_
+to generate a key and add it to your Github.com account (see the link at the end of the page).
+
+After setting up a key on Github.com you can create a repository to hold your website. Create a normal
+repository, but in the settings for the repository change the section *GitHub Pages* to say that the source
+is on the master branch.
+
+In the *MyWebSite* directory you will need two files. You can create them by doing these commands.
+
+.. code-block:: console
+
+    Kent's Mac> cat index.html
+    Kent's Mac> <meta http-equiv="refresh" content="0; url=build/html/index.html" />
+                <!This is a redirection to the real URL>
+
+This file contains the redirect to your build/html/index.html directory. This redirect means that when
+someone loads this web page in the home directory of the project, it will redirect to the github.com
+webpage address for this page (i.e. in the build directory).
+
+There must be a file in the home directory of the website called .nojekyll. This tells GitHub.com not
+to process this webpage with jekyll which is another markdown formatter.
+
+.. code-block:: console
+
+    Kent's Mac> cd MyWebSite
+    Kent's Mac> touch .nojekyll
+
+Finally, you can add the following lines into your Makefile. This will allow you to type *Make release* to
+send it to GitHub.com and the world
+
+.. code-block:: console
+
+    release: html
+            git add .
+            git commit -m "latest changes"
+            git push -u origin master
+            open "https://userid.github.io/MyWebSite/"
+
+That should be it.
+
+
+
+
+
 
 Common Graph Types
 ---------------------
