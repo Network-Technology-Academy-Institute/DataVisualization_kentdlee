@@ -489,6 +489,18 @@ Box and Whisker Plots
 
 `In this notebook <notebooks/Shared\ Bike\ Service\ Data.ipynb>`_ you learn about Box and Whisker Plots and how they can be used to examine the same of data in a column.
 
+Bubble Plots
++++++++++++++
+
+`Here we create a Bubble Plot <notebooks/Shared%20Bike%20Service%20Data.ipynb#Bubble-Plot>`_ which can help to visualize
+three-dimensional data.
+
+Heatmap Plots
+++++++++++++++
+
+`A Heatmap is a way to plot 3 dimensional data where the two axis dimensions are categorical <notebooks/Shared%20Bike%20Service%20Data.ipynb#Heat-Map>`_.
+For this kind of plot we use the Seaborn library since it contains a nice heatmap plotting function.
+
 Indices and tables
 ==================
 
