@@ -406,7 +406,7 @@ name should be your own project name and author is yourself of course.
 
 You edit text according to the sphinx markdown language. Sphinx markdown is well-documented on the web.
 You can see examples of how sphinx pages are written if you go to `https://github.com/kentdlee/SCSI <https://github.com/kentdlee/SCSI>`_.
-This repository has a *build* and a *source* directory. The *_source* directory contains the source file *index.rst*
+This repository has a *build* and a *source* directory. The *source* directory contains the source file *index.rst*
 which is where the content is located. The *build* directory contains a subdirectory called *html* which
 can be copied to a webserver. The *html* directory would be renamed whatever you would want your site called.
 For instance, if you wanted to call it *MyWebSite* then you would copy the html directory into your *public_html*
@@ -418,9 +418,9 @@ Hosting on Github.com
 You can also host the website on Github.com. To do this, you'll want to create an SSH key for transferring
 files to and from Github.com. On a Mac you can `follow this guide to generate an SSH key <https://coolestguidesontheplanet.com/create-a-ssh-private-and-public-key-in-osx-10-11/>`_.
 This guide shows you how to create the .ssh directory, protect the .ssh directory, and then copy the public
-key to another computer. For Github.com you go to your account setting (top right corner of Github.com page after
-you sign in) and you go to *Settings*. Then click on *SSH and GPG keys*. Click the *New SSH key* button
-and past your public key into that directory.
+key to another computer. For Github.com you go to your account *Settings* (top right corner of Github.com page after
+you sign in). Then click on *SSH and GPG keys*. Click the *New SSH key* button
+and paste your public key into that directory.
 
 On a Windows machine, you need to `install git bash from here <https://git-scm.com/downloads>`_. Then
 you can `follow the directions here <https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-windows>`_
@@ -428,30 +428,36 @@ to generate a key and add it to your Github.com account (see the link at the end
 
 After setting up a key on Github.com you can create a repository to hold your website. Create a normal
 repository, but in the settings for the repository change the section *GitHub Pages* to say that the source
-is on the master branch.
-
-In the *MyWebSite* directory you will need two files. You can create them by doing these commands.
+is on the master branch. Have the repository create a README.md file. Then go to your *MyWebSite* directory on your local
+machine and execute the following.
 
 .. code-block:: console
 
-    Kent's Mac> cat index.html
-    Kent's Mac> <meta http-equiv="refresh" content="0; url=build/html/index.html" />
-                <!This is a redirection to the real URL>
+      Kent's Mac> git clone https://github.com/userid/MyWebSite.git
+      Kent's Mac> git pull origin master
+      Kent's Mac>
 
-This file contains the redirect to your build/html/index.html directory. This redirect means that when
-someone loads this web page in the home directory of the project, it will redirect to the github.com
-webpage address for this page (i.e. in the build directory).
-
-There must be a file in the home directory of the website called .nojekyll. This tells GitHub.com not
-to process this webpage with jekyll which is another markdown formatter.
+In the *MyWebSite* directory you will need to create two files. You can create them by doing these commands.
 
 .. code-block:: console
 
     Kent's Mac> cd MyWebSite
+    Kent's Mac> echo "<meta http-equiv=\"refresh\" content=\"0; url=build/html/index.html\" />" > index.html
     Kent's Mac> touch .nojekyll
 
+
+The index.html file contains the redirect to your build/html/index.html directory. If you have *_build* instead of *build* for
+your sphinx build directory, then change the name above. This redirect means that when
+someone loads this web page in the home directory of the project, it will redirect to the github.com
+webpage address for this page (i.e. in the build directory).
+
+There must be a file in the home directory of the website called .nojekyll. This tells GitHub.com not
+to process this webpage with jekyll which is another markdown formatter. The *touch* command above created
+that file.
+
 Finally, you can add the following lines into your Makefile. This will allow you to type *Make release* to
-send it to GitHub.com and the world
+send it to GitHub.com and the world. You can open the website after a few minutes (it takes a few minutes to update on
+the web). Your repository settings tell you the URL of the GitHub page to open.
 
 .. code-block:: console
 
@@ -459,9 +465,9 @@ send it to GitHub.com and the world
             git add .
             git commit -m "latest changes"
             git push -u origin master
-            open "https://userid.github.io/MyWebSite/"
 
-That should be it.
+On a windows machine you can create a batch file with the last three lines of the file given above to execute in your gitbash
+shell.
 
 
 

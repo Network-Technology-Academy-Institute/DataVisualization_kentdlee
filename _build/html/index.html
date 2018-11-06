@@ -461,7 +461,7 @@ name should be your own project name and author is yourself of course.</p>
 </div>
 <p>You edit text according to the sphinx markdown language. Sphinx markdown is well-documented on the web.
 You can see examples of how sphinx pages are written if you go to <a class="reference external" href="https://github.com/kentdlee/SCSI">https://github.com/kentdlee/SCSI</a>.
-This repository has a <em>build</em> and a <em>source</em> directory. The <em>_source</em> directory contains the source file <em>index.rst</em>
+This repository has a <em>build</em> and a <em>source</em> directory. The <em>source</em> directory contains the source file <em>index.rst</em>
 which is where the content is located. The <em>build</em> directory contains a subdirectory called <em>html</em> which
 can be copied to a webserver. The <em>html</em> directory would be renamed whatever you would want your site called.
 For instance, if you wanted to call it <em>MyWebSite</em> then you would copy the html directory into your <em>public_html</em>
@@ -471,40 +471,45 @@ on your webserver and rename the html to <em>MyWebSite</em>.</p>
 <p>You can also host the website on Github.com. To do this, you’ll want to create an SSH key for transferring
 files to and from Github.com. On a Mac you can <a class="reference external" href="https://coolestguidesontheplanet.com/create-a-ssh-private-and-public-key-in-osx-10-11/">follow this guide to generate an SSH key</a>.
 This guide shows you how to create the .ssh directory, protect the .ssh directory, and then copy the public
-key to another computer. For Github.com you go to your account setting (top right corner of Github.com page after
-you sign in) and you go to <em>Settings</em>. Then click on <em>SSH and GPG keys</em>. Click the <em>New SSH key</em> button
-and past your public key into that directory.</p>
+key to another computer. For Github.com you go to your account <em>Settings</em> (top right corner of Github.com page after
+you sign in). Then click on <em>SSH and GPG keys</em>. Click the <em>New SSH key</em> button
+and paste your public key into that directory.</p>
 <p>On a Windows machine, you need to <a class="reference external" href="https://git-scm.com/downloads">install git bash from here</a>. Then
 you can <a class="reference external" href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-windows">follow the directions here</a>
 to generate a key and add it to your Github.com account (see the link at the end of the page).</p>
 <p>After setting up a key on Github.com you can create a repository to hold your website. Create a normal
 repository, but in the settings for the repository change the section <em>GitHub Pages</em> to say that the source
-is on the master branch.</p>
-<p>In the <em>MyWebSite</em> directory you will need two files. You can create them by doing these commands.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Kent&#39;s Mac&gt; cat index.html</span>
-<span class="go">Kent&#39;s Mac&gt; &lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=build/html/index.html&quot; /&gt;</span>
-<span class="go">            &lt;!This is a redirection to the real URL&gt;</span>
+is on the master branch. Have the repository create a README.md file. Then go to your <em>MyWebSite</em> directory on your local
+machine and execute the following.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Kent&#39;s Mac&gt; git clone https://github.com/userid/MyWebSite.git</span>
+<span class="go">Kent&#39;s Mac&gt; git pull origin master</span>
+<span class="go">Kent&#39;s Mac&gt;</span>
 </pre></div>
 </div>
-<p>This file contains the redirect to your build/html/index.html directory. This redirect means that when
-someone loads this web page in the home directory of the project, it will redirect to the github.com
-webpage address for this page (i.e. in the build directory).</p>
-<p>There must be a file in the home directory of the website called .nojekyll. This tells GitHub.com not
-to process this webpage with jekyll which is another markdown formatter.</p>
+<p>In the <em>MyWebSite</em> directory you will need to create two files. You can create them by doing these commands.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Kent&#39;s Mac&gt; cd MyWebSite</span>
+<span class="go">Kent&#39;s Mac&gt; echo &quot;&lt;meta http-equiv=\&quot;refresh\&quot; content=\&quot;0; url=build/html/index.html\&quot; /&gt;&quot; &gt; index.html</span>
 <span class="go">Kent&#39;s Mac&gt; touch .nojekyll</span>
 </pre></div>
 </div>
+<p>The index.html file contains the redirect to your build/html/index.html directory. If you have <em>_build</em> instead of <em>build</em> for
+your sphinx build directory, then change the name above. This redirect means that when
+someone loads this web page in the home directory of the project, it will redirect to the github.com
+webpage address for this page (i.e. in the build directory).</p>
+<p>There must be a file in the home directory of the website called .nojekyll. This tells GitHub.com not
+to process this webpage with jekyll which is another markdown formatter. The <em>touch</em> command above created
+that file.</p>
 <p>Finally, you can add the following lines into your Makefile. This will allow you to type <em>Make release</em> to
-send it to GitHub.com and the world</p>
+send it to GitHub.com and the world. You can open the website after a few minutes (it takes a few minutes to update on
+the web). Your repository settings tell you the URL of the GitHub page to open.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">release: html</span>
 <span class="go">        git add .</span>
 <span class="go">        git commit -m &quot;latest changes&quot;</span>
 <span class="go">        git push -u origin master</span>
-<span class="go">        open &quot;https://userid.github.io/MyWebSite/&quot;</span>
 </pre></div>
 </div>
-<p>That should be it.</p>
+<p>On a windows machine you can create a batch file with the last three lines of the file given above to execute in your gitbash
+shell.</p>
 </div>
 </div>
 <div class="section" id="common-graph-types">
