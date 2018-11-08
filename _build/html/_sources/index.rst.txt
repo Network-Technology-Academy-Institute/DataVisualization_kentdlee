@@ -495,11 +495,17 @@ Bubble Plots
 `Here we create a Bubble Plot <notebooks/Shared%20Bike%20Service%20Data.ipynb#Bubble-Plot>`_ which can help to visualize
 three-dimensional data.
 
+Violin Plots
+++++++++++++
+
+`A Violin Plot is like a box and whisker plot but shows the distribution of data within the range of possible values <notebooks/Shared%20Bike%20Service%20Data.ipynb#Violin-Plot>`_.
+For this kind of plot we use the Seaborn library since it contains a nice violin plotting function.
+
 Heatmap Plots
 ++++++++++++++
 
 `A Heatmap is a way to plot 3 dimensional data where the two axis dimensions are categorical <notebooks/Shared%20Bike%20Service%20Data.ipynb#Heat-Map>`_.
-For this kind of plot we use the Seaborn library since it contains a nice heatmap plotting function.
+This kind of plot also uses the Seaborn library for its heat map plotting function.
 
 Indices and tables
 ==================

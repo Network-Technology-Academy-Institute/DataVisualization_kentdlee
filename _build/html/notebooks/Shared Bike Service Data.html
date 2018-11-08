@@ -42,6 +42,7 @@
 <li><a class="reference internal" href="#Try-this-by-month-and-hour-to-see-the-usage-during-the-whole-year.">Try this by month and hour to see the usage during the whole year.</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#Violin-Plot">Violin Plot</a></li>
 <li><a class="reference internal" href="#Heat-Map">Heat Map</a></li>
 </ul>
 
@@ -245,7 +246,7 @@ found on Kaggle.</p>
 <p><a class="reference external" href="https://www.kaggle.com/marklvl/bike-sharing-dataset/home">https://www.kaggle.com/marklvl/bike-sharing-dataset/home</a></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [2]:
+<span></span>In [1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -264,7 +265,7 @@ found on Kaggle.</p>
 <p><strong>We download and read the dataset into a DataFrame.</strong></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [3]:
+<span></span>In [2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -274,7 +275,7 @@ found on Kaggle.</p>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [4]:
+<span></span>In [3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -284,7 +285,7 @@ found on Kaggle.</p>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[4]:
+<span></span>Out[3]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -433,7 +434,7 @@ found on Kaggle.</p>
 <p><strong>It is good to know something about the size of the dataset.</strong></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [5]:
+<span></span>In [4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -443,7 +444,7 @@ found on Kaggle.</p>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[5]:
+<span></span>Out[4]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -458,7 +459,7 @@ instance one row might have an incorrect value and that could change the
 type of the whole column.</strong></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [6]:
+<span></span>In [5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -468,7 +469,7 @@ type of the whole column.</strong></p>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[6]:
+<span></span>Out[5]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -502,7 +503,7 @@ columns. Discrete values may also be analyzed this way as well. First we
 put together a list of the for columns we wish to analyze.</strong></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [7]:
+<span></span>In [6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -521,7 +522,7 @@ values on the x-axis are shown as normalized to the range. Normalized
 means they are shown as percentages between 0 and 1.</strong></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [8]:
+<span></span>In [7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -545,7 +546,7 @@ means they are shown as percentages between 0 and 1.</strong></p>
 <p>Let’s find the peak times during workdays for bike riders.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [9]:
+<span></span>In [8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -555,7 +556,7 @@ means they are shown as percentages between 0 and 1.</strong></p>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[9]:
+<span></span>Out[8]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -565,7 +566,7 @@ means they are shown as percentages between 0 and 1.</strong></p>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [10]:
+<span></span>In [9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -576,7 +577,7 @@ means they are shown as percentages between 0 and 1.</strong></p>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[10]:
+<span></span>Out[9]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -611,7 +612,7 @@ Name: cnt, dtype: float64
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [11]:
+<span></span>In [10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -622,11 +623,11 @@ Name: cnt, dtype: float64
 </div>
 <div class="nboutput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[11]:
+<span></span>Out[10]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1177c3fd0&gt;
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11142c470&gt;
 </pre></div>
 </div>
 </div>
@@ -649,7 +650,7 @@ four columns of data. But we do get to instantly visualize the use of
 the bikes during hours of the day for all four seasons.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [12]:
+<span></span>In [14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -660,7 +661,7 @@ the bikes during hours of the day for all four seasons.</p>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[12]:
+<span></span>Out[14]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1767,18 +1768,19 @@ the bikes during hours of the day for all four seasons.</p>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [13]:
+<span></span>In [15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">workDaysBySeasonHour</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">workDaysBySeasonHour</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">workDaysBySeasonHour</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[13]:
+<span></span>Out[15]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1800,6 +1802,7 @@ the bikes during hours of the day for all four seasons.</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>hr</th>
       <th>season</th>
       <th>instant</th>
       <th>yr</th>
@@ -1816,28 +1819,11 @@ the bikes during hours of the day for all four seasons.</p>
       <th>registered</th>
       <th>cnt</th>
     </tr>
-    <tr>
-      <th>hr</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>0</td>
       <td>1</td>
       <td>6212.957265</td>
       <td>0.512821</td>
@@ -1857,6 +1843,7 @@ the bikes during hours of the day for all four seasons.</p>
     <tr>
       <th>1</th>
       <td>1</td>
+      <td>1</td>
       <td>6213.957265</td>
       <td>0.512821</td>
       <td>3.025641</td>
@@ -1874,6 +1861,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>2</th>
+      <td>2</td>
       <td>1</td>
       <td>6495.828829</td>
       <td>0.540541</td>
@@ -1892,6 +1880,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>3</th>
+      <td>3</td>
       <td>1</td>
       <td>6953.030612</td>
       <td>0.571429</td>
@@ -1910,6 +1899,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>4</th>
+      <td>4</td>
       <td>1</td>
       <td>7021.312500</td>
       <td>0.604167</td>
@@ -1928,6 +1918,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>5</th>
+      <td>5</td>
       <td>1</td>
       <td>6217.564103</td>
       <td>0.512821</td>
@@ -1946,6 +1937,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>6</th>
+      <td>6</td>
       <td>1</td>
       <td>6175.881356</td>
       <td>0.508475</td>
@@ -1964,6 +1956,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>7</th>
+      <td>7</td>
       <td>1</td>
       <td>6176.881356</td>
       <td>0.508475</td>
@@ -1982,6 +1975,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>8</th>
+      <td>8</td>
       <td>1</td>
       <td>6177.881356</td>
       <td>0.508475</td>
@@ -2000,6 +1994,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>9</th>
+      <td>9</td>
       <td>1</td>
       <td>6178.881356</td>
       <td>0.508475</td>
@@ -2018,6 +2013,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>10</th>
+      <td>10</td>
       <td>1</td>
       <td>6179.881356</td>
       <td>0.508475</td>
@@ -2036,6 +2032,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>11</th>
+      <td>11</td>
       <td>1</td>
       <td>6180.881356</td>
       <td>0.508475</td>
@@ -2054,6 +2051,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>12</th>
+      <td>12</td>
       <td>1</td>
       <td>6133.268908</td>
       <td>0.504202</td>
@@ -2072,6 +2070,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>13</th>
+      <td>13</td>
       <td>1</td>
       <td>6134.268908</td>
       <td>0.504202</td>
@@ -2090,6 +2089,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>14</th>
+      <td>14</td>
       <td>1</td>
       <td>6135.268908</td>
       <td>0.504202</td>
@@ -2108,6 +2108,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>15</th>
+      <td>15</td>
       <td>1</td>
       <td>6136.268908</td>
       <td>0.504202</td>
@@ -2126,6 +2127,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>16</th>
+      <td>16</td>
       <td>1</td>
       <td>6091.025000</td>
       <td>0.500000</td>
@@ -2144,6 +2146,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>17</th>
+      <td>17</td>
       <td>1</td>
       <td>6092.025000</td>
       <td>0.500000</td>
@@ -2162,6 +2165,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>18</th>
+      <td>18</td>
       <td>1</td>
       <td>6139.285714</td>
       <td>0.504202</td>
@@ -2180,6 +2184,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>19</th>
+      <td>19</td>
       <td>1</td>
       <td>6140.285714</td>
       <td>0.504202</td>
@@ -2198,6 +2203,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>20</th>
+      <td>20</td>
       <td>1</td>
       <td>6141.285714</td>
       <td>0.504202</td>
@@ -2216,6 +2222,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>21</th>
+      <td>21</td>
       <td>1</td>
       <td>6142.285714</td>
       <td>0.504202</td>
@@ -2234,6 +2241,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>22</th>
+      <td>22</td>
       <td>1</td>
       <td>6143.285714</td>
       <td>0.504202</td>
@@ -2252,6 +2260,7 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
     <tr>
       <th>23</th>
+      <td>23</td>
       <td>1</td>
       <td>6144.285714</td>
       <td>0.504202</td>
@@ -2269,7 +2278,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>45.848739</td>
     </tr>
     <tr>
-      <th>0</th>
+      <th>24</th>
+      <td>0</td>
       <td>2</td>
       <td>7260.875000</td>
       <td>0.500000</td>
@@ -2287,7 +2297,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>39.539062</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>25</th>
+      <td>1</td>
       <td>2</td>
       <td>7261.875000</td>
       <td>0.500000</td>
@@ -2305,7 +2316,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>18.921875</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>26</th>
+      <td>2</td>
       <td>2</td>
       <td>7262.875000</td>
       <td>0.500000</td>
@@ -2323,7 +2335,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>9.804688</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>27</th>
+      <td>3</td>
       <td>2</td>
       <td>7274.730159</td>
       <td>0.500000</td>
@@ -2341,7 +2354,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>5.087302</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>28</th>
+      <td>4</td>
       <td>2</td>
       <td>7364.427419</td>
       <td>0.508065</td>
@@ -2359,7 +2373,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>4.959677</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>29</th>
+      <td>5</td>
       <td>2</td>
       <td>7265.828125</td>
       <td>0.500000</td>
@@ -2393,9 +2408,11 @@ the bikes during hours of the day for all four seasons.</p>
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>18</th>
+      <th>66</th>
+      <td>18</td>
       <td>3</td>
       <td>9488.893130</td>
       <td>0.496183</td>
@@ -2413,7 +2430,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>624.931298</td>
     </tr>
     <tr>
-      <th>19</th>
+      <th>67</th>
+      <td>19</td>
       <td>3</td>
       <td>9489.893130</td>
       <td>0.496183</td>
@@ -2431,7 +2449,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>457.511450</td>
     </tr>
     <tr>
-      <th>20</th>
+      <th>68</th>
+      <td>20</td>
       <td>3</td>
       <td>9490.893130</td>
       <td>0.496183</td>
@@ -2449,7 +2468,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>337.061069</td>
     </tr>
     <tr>
-      <th>21</th>
+      <th>69</th>
+      <td>21</td>
       <td>3</td>
       <td>9491.893130</td>
       <td>0.496183</td>
@@ -2467,7 +2487,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>252.656489</td>
     </tr>
     <tr>
-      <th>22</th>
+      <th>70</th>
+      <td>22</td>
       <td>3</td>
       <td>9492.893130</td>
       <td>0.496183</td>
@@ -2485,7 +2506,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>189.732824</td>
     </tr>
     <tr>
-      <th>23</th>
+      <th>71</th>
+      <td>23</td>
       <td>3</td>
       <td>9493.893130</td>
       <td>0.496183</td>
@@ -2503,7 +2525,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>123.114504</td>
     </tr>
     <tr>
-      <th>0</th>
+      <th>72</th>
+      <td>0</td>
       <td>4</td>
       <td>11690.358333</td>
       <td>0.500000</td>
@@ -2521,7 +2544,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>37.500000</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>73</th>
+      <td>1</td>
       <td>4</td>
       <td>11656.117647</td>
       <td>0.495798</td>
@@ -2539,7 +2563,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>16.050420</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>74</th>
+      <td>2</td>
       <td>4</td>
       <td>11689.500000</td>
       <td>0.500000</td>
@@ -2557,7 +2582,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>8.372881</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>75</th>
+      <td>3</td>
       <td>4</td>
       <td>11618.551724</td>
       <td>0.491379</td>
@@ -2575,7 +2601,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>4.913793</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>76</th>
+      <td>4</td>
       <td>4</td>
       <td>11659.084034</td>
       <td>0.495798</td>
@@ -2593,7 +2620,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>6.647059</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>77</th>
+      <td>5</td>
       <td>4</td>
       <td>11660.084034</td>
       <td>0.495798</td>
@@ -2611,7 +2639,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>29.378151</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>78</th>
+      <td>6</td>
       <td>4</td>
       <td>11661.084034</td>
       <td>0.495798</td>
@@ -2629,7 +2658,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>111.420168</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>79</th>
+      <td>7</td>
       <td>4</td>
       <td>11662.084034</td>
       <td>0.495798</td>
@@ -2647,7 +2677,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>317.899160</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>80</th>
+      <td>8</td>
       <td>4</td>
       <td>11663.084034</td>
       <td>0.495798</td>
@@ -2665,7 +2696,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>527.184874</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>81</th>
+      <td>9</td>
       <td>4</td>
       <td>11664.084034</td>
       <td>0.495798</td>
@@ -2683,7 +2715,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>263.806723</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>82</th>
+      <td>10</td>
       <td>4</td>
       <td>11665.084034</td>
       <td>0.495798</td>
@@ -2701,7 +2734,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>143.873950</td>
     </tr>
     <tr>
-      <th>11</th>
+      <th>83</th>
+      <td>11</td>
       <td>4</td>
       <td>11666.084034</td>
       <td>0.495798</td>
@@ -2719,7 +2753,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>168.991597</td>
     </tr>
     <tr>
-      <th>12</th>
+      <th>84</th>
+      <td>12</td>
       <td>4</td>
       <td>11667.084034</td>
       <td>0.495798</td>
@@ -2737,7 +2772,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>220.495798</td>
     </tr>
     <tr>
-      <th>13</th>
+      <th>85</th>
+      <td>13</td>
       <td>4</td>
       <td>11703.225000</td>
       <td>0.500000</td>
@@ -2755,7 +2791,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>213.683333</td>
     </tr>
     <tr>
-      <th>14</th>
+      <th>86</th>
+      <td>14</td>
       <td>4</td>
       <td>11704.225000</td>
       <td>0.500000</td>
@@ -2773,7 +2810,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>198.900000</td>
     </tr>
     <tr>
-      <th>15</th>
+      <th>87</th>
+      <td>15</td>
       <td>4</td>
       <td>11705.225000</td>
       <td>0.500000</td>
@@ -2791,7 +2829,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>224.850000</td>
     </tr>
     <tr>
-      <th>16</th>
+      <th>88</th>
+      <td>16</td>
       <td>4</td>
       <td>11706.225000</td>
       <td>0.500000</td>
@@ -2809,7 +2848,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>325.308333</td>
     </tr>
     <tr>
-      <th>17</th>
+      <th>89</th>
+      <td>17</td>
       <td>4</td>
       <td>11707.225000</td>
       <td>0.500000</td>
@@ -2827,7 +2867,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>555.641667</td>
     </tr>
     <tr>
-      <th>18</th>
+      <th>90</th>
+      <td>18</td>
       <td>4</td>
       <td>11708.225000</td>
       <td>0.500000</td>
@@ -2845,7 +2886,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>495.966667</td>
     </tr>
     <tr>
-      <th>19</th>
+      <th>91</th>
+      <td>19</td>
       <td>4</td>
       <td>11709.225000</td>
       <td>0.500000</td>
@@ -2863,7 +2905,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>337.116667</td>
     </tr>
     <tr>
-      <th>20</th>
+      <th>92</th>
+      <td>20</td>
       <td>4</td>
       <td>11710.225000</td>
       <td>0.500000</td>
@@ -2881,7 +2924,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>237.566667</td>
     </tr>
     <tr>
-      <th>21</th>
+      <th>93</th>
+      <td>21</td>
       <td>4</td>
       <td>11711.225000</td>
       <td>0.500000</td>
@@ -2899,7 +2943,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>176.108333</td>
     </tr>
     <tr>
-      <th>22</th>
+      <th>94</th>
+      <td>22</td>
       <td>4</td>
       <td>11712.225000</td>
       <td>0.500000</td>
@@ -2917,7 +2962,8 @@ the bikes during hours of the day for all four seasons.</p>
       <td>131.250000</td>
     </tr>
     <tr>
-      <th>23</th>
+      <th>95</th>
+      <td>23</td>
       <td>4</td>
       <td>11713.225000</td>
       <td>0.500000</td>
@@ -2936,12 +2982,12 @@ the bikes during hours of the day for all four seasons.</p>
     </tr>
   </tbody>
 </table>
-<p>96 rows × 15 columns</p>
+<p>96 rows × 16 columns</p>
 </div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [14]:
+<span></span>In [16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2953,124 +2999,15 @@ the bikes during hours of the day for all four seasons.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
-<span class="ansi-green-fg">~/anaconda3/lib/python3.6/site-packages/pandas/core/indexes/base.py</span> in <span class="ansi-cyan-fg">get_loc</span><span class="ansi-blue-fg">(self, key, method, tolerance)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3062</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 3063</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_engine<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3064</span>             <span class="ansi-green-fg">except</span> KeyError<span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">pandas/_libs/index.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.index.IndexEngine.get_loc</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/_libs/index.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.index.IndexEngine.get_loc</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-red-fg">KeyError</span>: &#39;hr&#39;
-
-During handling of the above exception, another exception occurred:
-
-<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-14-d5a4ebacfa63&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>workDaysBySeasonHour<span class="ansi-blue-fg">.</span>plot<span class="ansi-blue-fg">.</span>scatter<span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;season&#39;</span><span class="ansi-blue-fg">,</span> y<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;hr&#39;</span><span class="ansi-blue-fg">,</span> s<span class="ansi-blue-fg">=</span>workDaysBySeasonHour<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;cnt&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">;</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.6/site-packages/pandas/plotting/_core.py</span> in <span class="ansi-cyan-fg">scatter</span><span class="ansi-blue-fg">(self, x, y, s, c, **kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3459</span>             ...                       colormap=&#39;viridis&#39;)
-<span class="ansi-green-intense-fg ansi-bold">   3460</span>         &#34;&#34;&#34;
-<span class="ansi-green-fg">-&gt; 3461</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">(</span>kind<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;scatter&#39;</span><span class="ansi-blue-fg">,</span> x<span class="ansi-blue-fg">=</span>x<span class="ansi-blue-fg">,</span> y<span class="ansi-blue-fg">=</span>y<span class="ansi-blue-fg">,</span> c<span class="ansi-blue-fg">=</span>c<span class="ansi-blue-fg">,</span> s<span class="ansi-blue-fg">=</span>s<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwds<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3462</span>
-<span class="ansi-green-intense-fg ansi-bold">   3463</span>     def hexbin(self, x, y, C=None, reduce_C_function=None, gridsize=None,
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.6/site-packages/pandas/plotting/_core.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self, x, y, kind, ax, subplots, sharex, sharey, layout, figsize, use_index, title, grid, legend, style, logx, logy, loglog, xticks, yticks, xlim, ylim, rot, fontsize, colormap, table, yerr, xerr, secondary_y, sort_columns, **kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2939</span>                           fontsize<span class="ansi-blue-fg">=</span>fontsize<span class="ansi-blue-fg">,</span> colormap<span class="ansi-blue-fg">=</span>colormap<span class="ansi-blue-fg">,</span> table<span class="ansi-blue-fg">=</span>table<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   2940</span>                           yerr<span class="ansi-blue-fg">=</span>yerr<span class="ansi-blue-fg">,</span> xerr<span class="ansi-blue-fg">=</span>xerr<span class="ansi-blue-fg">,</span> secondary_y<span class="ansi-blue-fg">=</span>secondary_y<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">-&gt; 2941</span><span class="ansi-red-fg">                           sort_columns=sort_columns, **kwds)
-</span><span class="ansi-green-intense-fg ansi-bold">   2942</span>     __call__<span class="ansi-blue-fg">.</span>__doc__ <span class="ansi-blue-fg">=</span> plot_frame<span class="ansi-blue-fg">.</span>__doc__
-<span class="ansi-green-intense-fg ansi-bold">   2943</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.6/site-packages/pandas/plotting/_core.py</span> in <span class="ansi-cyan-fg">plot_frame</span><span class="ansi-blue-fg">(data, x, y, kind, ax, subplots, sharex, sharey, layout, figsize, use_index, title, grid, legend, style, logx, logy, loglog, xticks, yticks, xlim, ylim, rot, fontsize, colormap, table, yerr, xerr, secondary_y, sort_columns, **kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1975</span>                  yerr<span class="ansi-blue-fg">=</span>yerr<span class="ansi-blue-fg">,</span> xerr<span class="ansi-blue-fg">=</span>xerr<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   1976</span>                  secondary_y<span class="ansi-blue-fg">=</span>secondary_y<span class="ansi-blue-fg">,</span> sort_columns<span class="ansi-blue-fg">=</span>sort_columns<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">-&gt; 1977</span><span class="ansi-red-fg">                  **kwds)
-</span><span class="ansi-green-intense-fg ansi-bold">   1978</span>
-<span class="ansi-green-intense-fg ansi-bold">   1979</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.6/site-packages/pandas/plotting/_core.py</span> in <span class="ansi-cyan-fg">_plot</span><span class="ansi-blue-fg">(data, x, y, subplots, ax, kind, **kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1741</span>         <span class="ansi-green-fg">if</span> isinstance<span class="ansi-blue-fg">(</span>data<span class="ansi-blue-fg">,</span> ABCDataFrame<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1742</span>             plot_obj = klass(data, x=x, y=y, subplots=subplots, ax=ax,
-<span class="ansi-green-fg">-&gt; 1743</span><span class="ansi-red-fg">                              kind=kind, **kwds)
-</span><span class="ansi-green-intense-fg ansi-bold">   1744</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1745</span>             raise ValueError(&#34;plot kind %r can only be used for data frames&#34;
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.6/site-packages/pandas/plotting/_core.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, data, x, y, s, c, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    843</span>             <span class="ansi-red-fg"># the handling of this argument later</span>
-<span class="ansi-green-intense-fg ansi-bold">    844</span>             s <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">20</span>
-<span class="ansi-green-fg">--&gt; 845</span><span class="ansi-red-fg">         </span>super<span class="ansi-blue-fg">(</span>ScatterPlot<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>__init__<span class="ansi-blue-fg">(</span>data<span class="ansi-blue-fg">,</span> x<span class="ansi-blue-fg">,</span> y<span class="ansi-blue-fg">,</span> s<span class="ansi-blue-fg">=</span>s<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    846</span>         <span class="ansi-green-fg">if</span> is_integer<span class="ansi-blue-fg">(</span>c<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">and</span> <span class="ansi-green-fg">not</span> self<span class="ansi-blue-fg">.</span>data<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">.</span>holds_integer<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    847</span>             c <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>data<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">[</span>c<span class="ansi-blue-fg">]</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.6/site-packages/pandas/plotting/_core.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, data, x, y, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    819</span>         <span class="ansi-green-fg">if</span> len<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>data<span class="ansi-blue-fg">[</span>x<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>_get_numeric_data<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">==</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    820</span>             <span class="ansi-green-fg">raise</span> ValueError<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_kind <span class="ansi-blue-fg">+</span> <span class="ansi-blue-fg">&#39; requires x column to be numeric&#39;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 821</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">if</span> len<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>data<span class="ansi-blue-fg">[</span>y<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>_get_numeric_data<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">==</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    822</span>             <span class="ansi-green-fg">raise</span> ValueError<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_kind <span class="ansi-blue-fg">+</span> <span class="ansi-blue-fg">&#39; requires y column to be numeric&#39;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    823</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.6/site-packages/pandas/core/frame.py</span> in <span class="ansi-cyan-fg">__getitem__</span><span class="ansi-blue-fg">(self, key)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2683</span>             <span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_getitem_multilevel<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2684</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 2685</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_getitem_column<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2686</span>
-<span class="ansi-green-intense-fg ansi-bold">   2687</span>     <span class="ansi-green-fg">def</span> _getitem_column<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> key<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.6/site-packages/pandas/core/frame.py</span> in <span class="ansi-cyan-fg">_getitem_column</span><span class="ansi-blue-fg">(self, key)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2690</span>         <span class="ansi-red-fg"># get column</span>
-<span class="ansi-green-intense-fg ansi-bold">   2691</span>         <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">.</span>is_unique<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 2692</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_get_item_cache<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2693</span>
-<span class="ansi-green-intense-fg ansi-bold">   2694</span>         <span class="ansi-red-fg"># duplicate columns &amp; possible reduce dimensionality</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.6/site-packages/pandas/core/generic.py</span> in <span class="ansi-cyan-fg">_get_item_cache</span><span class="ansi-blue-fg">(self, item)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2484</span>         res <span class="ansi-blue-fg">=</span> cache<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2485</span>         <span class="ansi-green-fg">if</span> res <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 2486</span><span class="ansi-red-fg">             </span>values <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_data<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2487</span>             res <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_box_item_values<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">,</span> values<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2488</span>             cache<span class="ansi-blue-fg">[</span>item<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> res
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.6/site-packages/pandas/core/internals.py</span> in <span class="ansi-cyan-fg">get</span><span class="ansi-blue-fg">(self, item, fastpath)</span>
-<span class="ansi-green-intense-fg ansi-bold">   4113</span>
-<span class="ansi-green-intense-fg ansi-bold">   4114</span>             <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> isna<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 4115</span><span class="ansi-red-fg">                 </span>loc <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   4116</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   4117</span>                 indexer <span class="ansi-blue-fg">=</span> np<span class="ansi-blue-fg">.</span>arange<span class="ansi-blue-fg">(</span>len<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span>isna<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.6/site-packages/pandas/core/indexes/base.py</span> in <span class="ansi-cyan-fg">get_loc</span><span class="ansi-blue-fg">(self, key, method, tolerance)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3063</span>                 <span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_engine<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3064</span>             <span class="ansi-green-fg">except</span> KeyError<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 3065</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_engine<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_maybe_cast_indexer<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3066</span>
-<span class="ansi-green-intense-fg ansi-bold">   3067</span>         indexer <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>get_indexer<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span>key<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> method<span class="ansi-blue-fg">=</span>method<span class="ansi-blue-fg">,</span> tolerance<span class="ansi-blue-fg">=</span>tolerance<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">pandas/_libs/index.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.index.IndexEngine.get_loc</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/_libs/index.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.index.IndexEngine.get_loc</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-red-fg">KeyError</span>: &#39;hr&#39;
-</pre></div></div>
+<img alt="../_images/notebooks_Shared_Bike_Service_Data_21_0.png" src="../_images/notebooks_Shared_Bike_Service_Data_21_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="Try-this-by-month-and-hour-to-see-the-usage-during-the-whole-year.">
 <h2>Try this by month and hour to see the usage during the whole year.<a class="headerlink" href="#Try-this-by-month-and-hour-to-see-the-usage-during-the-whole-year." title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [15]:
+<span></span>In [17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3083,7 +3020,7 @@ During handling of the above exception, another exception occurred:
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[15]:
+<span></span>Out[17]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -4290,7 +4227,7 @@ During handling of the above exception, another exception occurred:
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [16]:
+<span></span>In [18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4307,15 +4244,47 @@ During handling of the above exception, another exception occurred:
 </div>
 </div>
 </div>
+<div class="section" id="Violin-Plot">
+<h1>Violin Plot<a class="headerlink" href="#Violin-Plot" title="Permalink to this headline">¶</a></h1>
+<p>A violin plot is a Box and whisker plot that include information about
+the population density. The width of the violin relates to the density
+of the data at that value. This gives us insight not only into the
+quartiles, but also the distribution of the data within those quartiles.</p>
+<p>This graph shows us that there is a pretty even distribution of data in
+the interquartile range. The temperatures are normalized in the data set
+so it is impossible (without knowing the max and min used to normalize)
+what the exact temperature was.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">bikeDays</span><span class="p">[</span><span class="s2">&quot;temp&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_Shared_Bike_Service_Data_26_0.png" src="../_images/notebooks_Shared_Bike_Service_Data_26_0.png" />
+</div>
+</div>
+</div>
 <div class="section" id="Heat-Map">
 <h1>Heat Map<a class="headerlink" href="#Heat-Map" title="Permalink to this headline">¶</a></h1>
 <p>Another way to visualize 3D data is with a heat map. A heat map will let
 you see where two categorical columns have the greatest third dimension.
 The two columns must be categorical as in the data for biking by hour
 and month of year.</p>
+<p>In this graph we can quickly see that the peak usage time of year is in
+August between 4pm and 6pm.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [17]:
+<span></span>In [21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4325,9 +4294,15 @@ and month of year.</p>
 </div>
 <p><strong>We must create a pivot table to construct the heat map matrix of
 data.</strong></p>
+<p>In the Stacked Graph notebook we used the method <em>pivot_table</em>. Here we
+use the <em>pivot</em> method. The difference is that <em>pivot_table</em> is more
+powerful and able to handle duplicate values in an entry through an
+aggregation function. The default aggregation function is the <em>mean</em>.
+Here is some documentation on the differences between the two.</p>
+<p><a class="reference external" href="https://stackoverflow.com/questions/30960338/pandas-difference-between-pivot-and-pivot-table-why-is-only-pivot-table-workin">https://stackoverflow.com/questions/30960338/pandas-difference-between-pivot-and-pivot-table-why-is-only-pivot-table-workin</a></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [25]:
+<span></span>In [24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4338,7 +4313,7 @@ data.</strong></p>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[25]:
+<span></span>Out[24]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -4756,7 +4731,7 @@ data.</strong></p>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [26]:
+<span></span>In [25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4768,7 +4743,7 @@ data.</strong></p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_Shared_Bike_Service_Data_30_0.png" src="../_images/notebooks_Shared_Bike_Service_Data_30_0.png" />
+<img alt="../_images/notebooks_Shared_Bike_Service_Data_32_0.png" src="../_images/notebooks_Shared_Bike_Service_Data_32_0.png" />
 </div>
 </div>
 </div>
