@@ -507,6 +507,12 @@ Heatmap Plots
 `A Heatmap is a way to plot 3 dimensional data where the two axis dimensions are categorical <notebooks/Shared%20Bike%20Service%20Data.ipynb#Heat-Map>`_.
 This kind of plot also uses the Seaborn library for its heat map plotting function.
 
+Network Graph
+++++++++++++++
+
+Sometimes called a node-link graph, this kind of plot shows connections between categorical information. For instance in `this
+notebook the connections between technogies are plotted <notebooks/Stackoverflow%20Technology%20Connections.ipynb>`_.
+
 Indices and tables
 ==================
 
