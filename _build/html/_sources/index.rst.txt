@@ -416,8 +416,8 @@ Hosting on Github.com
 ++++++++++++++++++++++++
 
 You can also host the website on Github.com. To do this, you'll want to create an SSH key for transferring
-files to and from Github.com. On a Mac you can `follow this guide to generate an SSH key <https://coolestguidesontheplanet.com/create-a-ssh-private-and-public-key-in-osx-10-11/>`_.
-This guide shows you how to create the .ssh directory, protect the .ssh directory, and then copy the public
+files to and from Github.com. On a Mac you can `follow this guide to generate an SSH key <https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/>`_.
+This guide shows you how to create the key and then copy the public
 key to another computer. For Github.com you go to your account *Settings* (top right corner of Github.com page after
 you sign in). Then click on *SSH and GPG keys*. Click the *New SSH key* button
 and paste your public key into that directory.
@@ -428,16 +428,30 @@ to generate a key and add it to your Github.com account (see the link at the end
 
 After setting up a key on Github.com you can create a repository to hold your website. Create a normal
 repository, but in the settings for the repository change the section *GitHub Pages* to say that the source
-is on the master branch. Have the repository create a README.md file. Then go to your *MyWebSite* directory on your local
-machine and execute the following.
+is on the master branch. Have the repository create a README.md file.
+
+Then add anyone who will be collaborating with your by clicking on *Settings* for your repository on GitHub.com and add
+the collaborator(s). Make sure you give them editing capability.
+
+Now, both collaborators can do the following. Go to a folder where you want to hold the website. You can open a terminal
+window (or gitbash terminal in Windows) and change to that directory/folder. Then execute the following where *username*
+is your username and *MyWebSite* is the name of your repository.
 
 .. code-block:: console
 
-      Kent's Mac> git clone https://github.com/userid/MyWebSite.git
-      Kent's Mac> git pull origin master
+      Kent's Mac> git clone git@github.com:username/MyWebSite.git
       Kent's Mac>
 
-In the *MyWebSite* directory you will need to create two files. You can create them by doing these commands.
+Then move all files from your website (if you previously created the files) into this new directory/folder. You can use this command
+to do that on a Mac or in gitbash on a PC.
+
+.. code-block:: console
+
+    Kent's Mac> cd MyWebSite
+    Kent's Mac> mv path/to/olddir/* .
+
+This will move all files to your new *MyWebSite* folder.
+In the *MyWebSite* directory you will need to create two additional files. You can create them by doing these commands.
 
 .. code-block:: console
 
@@ -467,11 +481,7 @@ the web). Your repository settings tell you the URL of the GitHub page to open.
             git push -u origin master
 
 On a windows machine you can create a batch file with the last three lines of the file given above to execute in your gitbash
-shell.
-
-
-
-
+shell. You can call this batch file *release.bat*. Then to run it you type *release* to release it to the world.
 
 
 Common Graph Types

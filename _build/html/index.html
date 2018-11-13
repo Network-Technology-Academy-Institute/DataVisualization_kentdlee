@@ -473,8 +473,8 @@ on your webserver and rename the html to <em>MyWebSite</em>.</p>
 <div class="section" id="hosting-on-github-com">
 <h3>Hosting on Github.com<a class="headerlink" href="#hosting-on-github-com" title="Permalink to this headline">¶</a></h3>
 <p>You can also host the website on Github.com. To do this, you’ll want to create an SSH key for transferring
-files to and from Github.com. On a Mac you can <a class="reference external" href="https://coolestguidesontheplanet.com/create-a-ssh-private-and-public-key-in-osx-10-11/">follow this guide to generate an SSH key</a>.
-This guide shows you how to create the .ssh directory, protect the .ssh directory, and then copy the public
+files to and from Github.com. On a Mac you can <a class="reference external" href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/">follow this guide to generate an SSH key</a>.
+This guide shows you how to create the key and then copy the public
 key to another computer. For Github.com you go to your account <em>Settings</em> (top right corner of Github.com page after
 you sign in). Then click on <em>SSH and GPG keys</em>. Click the <em>New SSH key</em> button
 and paste your public key into that directory.</p>
@@ -483,14 +483,24 @@ you can <a class="reference external" href="https://help.github.com/articles/gen
 to generate a key and add it to your Github.com account (see the link at the end of the page).</p>
 <p>After setting up a key on Github.com you can create a repository to hold your website. Create a normal
 repository, but in the settings for the repository change the section <em>GitHub Pages</em> to say that the source
-is on the master branch. Have the repository create a README.md file. Then go to your <em>MyWebSite</em> directory on your local
-machine and execute the following.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Kent&#39;s Mac&gt; git clone https://github.com/userid/MyWebSite.git</span>
-<span class="go">Kent&#39;s Mac&gt; git pull origin master</span>
+is on the master branch. Have the repository create a README.md file.</p>
+<p>Then add anyone who will be collaborating with your by clicking on <em>Settings</em> for your repository on GitHub.com and add
+the collaborator(s). Make sure you give them editing capability.</p>
+<p>Now, both collaborators can do the following. Go to a folder where you want to hold the website. You can open a terminal
+window (or gitbash terminal in Windows) and change to that directory/folder. Then execute the following where <em>username</em>
+is your username and <em>MyWebSite</em> is the name of your repository.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Kent&#39;s Mac&gt; git clone git@github.com:username/MyWebSite.git</span>
 <span class="go">Kent&#39;s Mac&gt;</span>
 </pre></div>
 </div>
-<p>In the <em>MyWebSite</em> directory you will need to create two files. You can create them by doing these commands.</p>
+<p>Then move all files from your website (if you previously created the files) into this new directory/folder. You can use this command
+to do that on a Mac or in gitbash on a PC.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Kent&#39;s Mac&gt; cd MyWebSite</span>
+<span class="go">Kent&#39;s Mac&gt; mv path/to/olddir/* .</span>
+</pre></div>
+</div>
+<p>This will move all files to your new <em>MyWebSite</em> folder.
+In the <em>MyWebSite</em> directory you will need to create two additional files. You can create them by doing these commands.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Kent&#39;s Mac&gt; cd MyWebSite</span>
 <span class="go">Kent&#39;s Mac&gt; echo &quot;&lt;meta http-equiv=\&quot;refresh\&quot; content=\&quot;0; url=build/html/index.html\&quot; /&gt;&quot; &gt; index.html</span>
 <span class="go">Kent&#39;s Mac&gt; touch .nojekyll</span>
@@ -513,7 +523,7 @@ the web). Your repository settings tell you the URL of the GitHub page to open.<
 </pre></div>
 </div>
 <p>On a windows machine you can create a batch file with the last three lines of the file given above to execute in your gitbash
-shell.</p>
+shell. You can call this batch file <em>release.bat</em>. Then to run it you type <em>release</em> to release it to the world.</p>
 </div>
 </div>
 <div class="section" id="common-graph-types">
