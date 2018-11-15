@@ -564,7 +564,7 @@ Interactive Plotting
 An interactive plot has widgets that let you control some interaction with the plot. Matplotlib contains interactive plotting
 controls in it. `You can watch a video on this here <https://www.youtube.com/watch?v=rkBPgTL-D3Y&t=301s>`_. `This notebook <notebooks/Interactive\ Plotting.ipynb>`_ contains the code from the video.
 
-You can `download the notebook directly from here <http://github.com/kentdlee/DataVisualization/notebooks/Interactive\ Plotting.ipynb>`_.
+You can `download the notebook directly from here <https://github.com/kentdlee/DataVisualization/blob/master/notebooks/Interactive%20Plotting.ipynb>`_.
 
 Indices and tables
 ==================
