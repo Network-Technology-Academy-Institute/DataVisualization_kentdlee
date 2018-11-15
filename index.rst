@@ -412,6 +412,33 @@ can be copied to a webserver. The *html* directory would be renamed whatever you
 For instance, if you wanted to call it *MyWebSite* then you would copy the html directory into your *public_html*
 on your webserver and rename the html to *MyWebSite*.
 
+Displaying Notebooks in Sphinx
++++++++++++++++++++++++++++++++++
+
+To display your notebooks in sphinx you will want to install the nbsphinx package. You can do this by
+typing the following at a prompt. This assumes you have anaconda installed on your system and you have the
+*bin* directory of anaconda in your path.
+
+.. code-block:: console
+
+    pip install nbsphinx
+
+With that installed, than you can link to a notebook in your code by writing the following in your RST file.
+
+.. code-block:: console
+
+    Stacked Area Plots
+    ++++++++++++++++++++++++++++++
+
+    `In this notebook <notebooks/Introduction\ to\ Plotting\ Exercise.ipynb>`_ I work with
+    the `movie database <_static/movies.csv>`_ to build a stacked area plot and a few other
+    example graphs. Perhaps one of the most important parts of this notebook is in
+    creating a pivot_table which takes columns from a DataFrame and builds a new DataFrame
+    from it where the values in a column become columns in a new DataFrame.
+
+The restructured text provided above assumes that there is a subdirectory in your main
+sphinx project directory called *notebooks* which contains your Python notebooks.
+
 Hosting on Github.com
 ++++++++++++++++++++++++
 
@@ -522,6 +549,14 @@ Network Graph
 
 Sometimes called a node-link graph, this kind of plot shows connections between categorical information. For instance in `this
 notebook the connections between technogies are plotted <notebooks/Stackoverflow%20Technology%20Connections.ipynb>`_.
+
+Plotting Geographical Data
+++++++++++++++++++++++++++++
+
+Google Maps seems to be a widely used resource for plotting geographical data, but other plotting libraries are possible.
+`This notebook <notebooks/Plotting%20Geographical%20Data.ipynb>`_ shows examples that work with Anaconda version 3.7. All the examples given in this notebook work while many of
+the examples found online had compatibility problems because the libraries continue to evolve as Data Science matures and
+new technologies become avaialable.
 
 Indices and tables
 ==================

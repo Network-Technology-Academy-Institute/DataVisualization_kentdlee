@@ -9,10 +9,12 @@
     <title>Welcome to Data Visualization! &#8212; Data Visualization by Kent D. Lee (and others)</title>
     <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,7 +34,7 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table Of Contents</a></h3>
+  <h3><a href="#">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Welcome to Data Visualization!</a><ul>
 <li><a class="reference internal" href="#python-programming">Python Programming</a></li>
@@ -55,6 +57,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#building-a-website">Building a Website</a><ul>
+<li><a class="reference internal" href="#displaying-notebooks-in-sphinx">Displaying Notebooks in Sphinx</a></li>
 <li><a class="reference internal" href="#hosting-on-github-com">Hosting on Github.com</a></li>
 </ul>
 </li>
@@ -65,6 +68,7 @@
 <li><a class="reference internal" href="#violin-plots">Violin Plots</a></li>
 <li><a class="reference internal" href="#heatmap-plots">Heatmap Plots</a></li>
 <li><a class="reference internal" href="#network-graph">Network Graph</a></li>
+<li><a class="reference internal" href="#plotting-geographical-data">Plotting Geographical Data</a></li>
 </ul>
 </li>
 </ul>
@@ -470,6 +474,28 @@ which is where the content is located. The <em>build</em> directory contains a s
 can be copied to a webserver. The <em>html</em> directory would be renamed whatever you would want your site called.
 For instance, if you wanted to call it <em>MyWebSite</em> then you would copy the html directory into your <em>public_html</em>
 on your webserver and rename the html to <em>MyWebSite</em>.</p>
+<div class="section" id="displaying-notebooks-in-sphinx">
+<h3>Displaying Notebooks in Sphinx<a class="headerlink" href="#displaying-notebooks-in-sphinx" title="Permalink to this headline">¶</a></h3>
+<p>To display your notebooks in sphinx you will want to install the nbsphinx package. You can do this by
+typing the following at a prompt. This assumes you have anaconda installed on your system and you have the
+<em>bin</em> directory of anaconda in your path.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install nbsphinx</span>
+</pre></div>
+</div>
+<p>With that installed, than you can link to a notebook in your code by writing the following in your RST file.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Stacked Area Plots</span>
+<span class="go">++++++++++++++++++++++++++++++</span>
+
+<span class="go">`In this notebook &lt;notebooks/Introduction\ to\ Plotting\ Exercise.ipynb&gt;`_ I work with</span>
+<span class="go">the `movie database &lt;_static/movies.csv&gt;`_ to build a stacked area plot and a few other</span>
+<span class="go">example graphs. Perhaps one of the most important parts of this notebook is in</span>
+<span class="go">creating a pivot_table which takes columns from a DataFrame and builds a new DataFrame</span>
+<span class="go">from it where the values in a column become columns in a new DataFrame.</span>
+</pre></div>
+</div>
+<p>The restructured text provided above assumes that there is a subdirectory in your main
+sphinx project directory called <em>notebooks</em> which contains your Python notebooks.</p>
+</div>
 <div class="section" id="hosting-on-github-com">
 <h3>Hosting on Github.com<a class="headerlink" href="#hosting-on-github-com" title="Permalink to this headline">¶</a></h3>
 <p>You can also host the website on Github.com. To do this, you’ll want to create an SSH key for transferring
@@ -557,6 +583,13 @@ This kind of plot also uses the Seaborn library for its heat map plotting functi
 <p>Sometimes called a node-link graph, this kind of plot shows connections between categorical information. For instance in <a class="reference internal" href="notebooks/Stackoverflow Technology Connections.html"><span class="doc">this
 notebook the connections between technogies are plotted</span></a>.</p>
 </div>
+<div class="section" id="plotting-geographical-data">
+<h3>Plotting Geographical Data<a class="headerlink" href="#plotting-geographical-data" title="Permalink to this headline">¶</a></h3>
+<p>Google Maps seems to be a widely used resource for plotting geographical data, but other plotting libraries are possible.
+<a class="reference internal" href="notebooks/Plotting Geographical Data.html"><span class="doc">This notebook</span></a> shows examples that work with Anaconda version 3.7. All the examples given in this notebook work while many of
+the examples found online had compatibility problems because the libraries continue to evolve as Data Science matures and
+new technologies become avaialable.</p>
+</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
@@ -585,7 +618,7 @@ notebook the connections between technogies are plotted</span></a>.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Kent D. Lee.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
     </div>
   </body>
 </html>
