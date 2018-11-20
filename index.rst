@@ -317,6 +317,12 @@ Pose a question that you need to gather a large dataset to either prove or dispr
 web and find data that supports or disproves your hypothesis. You may use JSON data, XML data, a
 webcrawler, or any means necessary to get acquire the data that you need.
 
+Joining Dataframes
+---------------------
+
+When you have two or more dataframes with common indices you can easily join them into one dataframe. Just how they are
+joined depends on what method you use to join them. `Follow this guide to see how similar dataframes may be joined <notebooks/Joining%20Dataframes.ipynb>`_.
+
 Building a Website
 ------------------
 

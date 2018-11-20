@@ -1,0 +1,2495 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Joining Two or More Dataframes &#8212; Data Visualization by Kent D. Lee (and others)</title>
+    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Data Visualization by Kent D. Lee (and others)</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Joining Two or More Dataframes</a><ul>
+<li><a class="reference internal" href="#Reading-a-CSV">Reading a CSV</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Population-By-State">Population By State</a><ul>
+<li><a class="reference internal" href="#Read-the-Other-Dataframe">Read the Other Dataframe</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Change-the-Ordering">Change the Ordering</a></li>
+<li><a class="reference internal" href="#Drop-a-Row-from-Each">Drop a Row from Each</a><ul>
+<li><a class="reference internal" href="#Inner-Join">Inner Join</a></li>
+<li><a class="reference internal" href="#Outer-Join">Outer Join</a></li>
+<li><a class="reference internal" href="#Left-Join">Left Join</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/notebooks/Joining Dataframes.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 9ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+</style>
+<div class="section" id="Joining-Two-or-More-Dataframes">
+<h1>Joining Two or More Dataframes<a class="headerlink" href="#Joining-Two-or-More-Dataframes" title="Permalink to this headline">¶</a></h1>
+<p>In this guide you learn how to join two or more dataframes together when
+they contain similar indices. The two dataframes must have a column or
+columns on which they can be joined. In these examples the similar
+columns should be the indices of the two dataframes. If they are not the
+indices, then the code below also shows you how to make them the
+indices.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [243]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Reading-a-CSV">
+<h2>Reading a CSV<a class="headerlink" href="#Reading-a-CSV" title="Permalink to this headline">¶</a></h2>
+<p>In this csv we have a test of two different datasets that share a common
+index. We read the first CSV here.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [244]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">population</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;statespop.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [245]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">population</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[245]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>PopEst2016</th>
+      <th>Pop2010</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>California</td>
+      <td>39250017</td>
+      <td>37254503</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Texas</td>
+      <td>27862596</td>
+      <td>25146105</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Florida</td>
+      <td>20612439</td>
+      <td>18804623</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>New York</td>
+      <td>19745289</td>
+      <td>19378087</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Illinois</td>
+      <td>12801539</td>
+      <td>12831549</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Population-By-State">
+<h1>Population By State<a class="headerlink" href="#Population-By-State" title="Permalink to this headline">¶</a></h1>
+<p>In this dataframe we set “State” as the index.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [246]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">population</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;State&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [247]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">population</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[247]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PopEst2016</th>
+      <th>Pop2010</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>California</th>
+      <td>39250017</td>
+      <td>37254503</td>
+    </tr>
+    <tr>
+      <th>Texas</th>
+      <td>27862596</td>
+      <td>25146105</td>
+    </tr>
+    <tr>
+      <th>Florida</th>
+      <td>20612439</td>
+      <td>18804623</td>
+    </tr>
+    <tr>
+      <th>New York</th>
+      <td>19745289</td>
+      <td>19378087</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>12801539</td>
+      <td>12831549</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [248]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">population</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[248]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(50, 2)
+</pre></div>
+</div>
+</div>
+<div class="section" id="Read-the-Other-Dataframe">
+<h2>Read the Other Dataframe<a class="headerlink" href="#Read-the-Other-Dataframe" title="Permalink to this headline">¶</a></h2>
+<p>Texas was intentionally left out of this dataset.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [249]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">reps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;statesCensus.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [250]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">reps</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[250]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Representatives</th>
+      <th>TotalPct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>California</td>
+      <td>53</td>
+      <td>12.15</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Florida</td>
+      <td>27</td>
+      <td>6.38</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>New York</td>
+      <td>27</td>
+      <td>6.11</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Illinois</td>
+      <td>18</td>
+      <td>3.96</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Pennsylvania</td>
+      <td>18</td>
+      <td>3.96</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [251]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">reps</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;State&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [252]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">reps</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[252]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Representatives</th>
+      <th>TotalPct</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>California</th>
+      <td>53</td>
+      <td>12.15</td>
+    </tr>
+    <tr>
+      <th>Florida</th>
+      <td>27</td>
+      <td>6.38</td>
+    </tr>
+    <tr>
+      <th>New York</th>
+      <td>27</td>
+      <td>6.11</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>18</td>
+      <td>3.96</td>
+    </tr>
+    <tr>
+      <th>Pennsylvania</th>
+      <td>18</td>
+      <td>3.96</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [253]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">reps</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[253]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(49, 2)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Change-the-Ordering">
+<h1>Change the Ordering<a class="headerlink" href="#Change-the-Ordering" title="Permalink to this headline">¶</a></h1>
+<p>Here we change the ordering of the entries to show that they items do
+not need to be in the same order to join two dataframes. The joining is
+matched up according to the index.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [254]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">newOrderReps</span> <span class="o">=</span> <span class="n">reps</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [255]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">newOrderReps</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[255]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Representatives</th>
+      <th>TotalPct</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Missouri</th>
+      <td>8</td>
+      <td>1.89</td>
+    </tr>
+    <tr>
+      <th>Idaho</th>
+      <td>2</td>
+      <td>0.52</td>
+    </tr>
+    <tr>
+      <th>Oklahoma</th>
+      <td>5</td>
+      <td>1.21</td>
+    </tr>
+    <tr>
+      <th>Massachusetts</th>
+      <td>9</td>
+      <td>2.11</td>
+    </tr>
+    <tr>
+      <th>Wyoming</th>
+      <td>1</td>
+      <td>0.18</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [256]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">newOrderReps</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[256]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(49, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Drop-a-Row-from-Each">
+<h1>Drop a Row from Each<a class="headerlink" href="#Drop-a-Row-from-Each" title="Permalink to this headline">¶</a></h1>
+<p>This is done to show how missing information is handled in each of the
+joins.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [257]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">population</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;California&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [258]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">population</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[258]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PopEst2016</th>
+      <th>Pop2010</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Texas</th>
+      <td>27862596</td>
+      <td>25146105</td>
+    </tr>
+    <tr>
+      <th>Florida</th>
+      <td>20612439</td>
+      <td>18804623</td>
+    </tr>
+    <tr>
+      <th>New York</th>
+      <td>19745289</td>
+      <td>19378087</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>12801539</td>
+      <td>12831549</td>
+    </tr>
+    <tr>
+      <th>Pennsylvania</th>
+      <td>12784227</td>
+      <td>12702887</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [259]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">population</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[259]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(49, 2)
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [260]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">newOrderReps</span> <span class="o">=</span> <span class="n">newOrderReps</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;New York&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [261]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">newOrderReps</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[261]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Representatives</th>
+      <th>TotalPct</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Missouri</th>
+      <td>8</td>
+      <td>1.89</td>
+    </tr>
+    <tr>
+      <th>Idaho</th>
+      <td>2</td>
+      <td>0.52</td>
+    </tr>
+    <tr>
+      <th>Oklahoma</th>
+      <td>5</td>
+      <td>1.21</td>
+    </tr>
+    <tr>
+      <th>Massachusetts</th>
+      <td>9</td>
+      <td>2.11</td>
+    </tr>
+    <tr>
+      <th>Wyoming</th>
+      <td>1</td>
+      <td>0.18</td>
+    </tr>
+    <tr>
+      <th>Tennessee</th>
+      <td>9</td>
+      <td>2.06</td>
+    </tr>
+    <tr>
+      <th>Hawaii</th>
+      <td>2</td>
+      <td>0.44</td>
+    </tr>
+    <tr>
+      <th>Washington</th>
+      <td>10</td>
+      <td>2.26</td>
+    </tr>
+    <tr>
+      <th>Wisconsin</th>
+      <td>8</td>
+      <td>1.79</td>
+    </tr>
+    <tr>
+      <th>North Dakota</th>
+      <td>1</td>
+      <td>0.24</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>18</td>
+      <td>3.96</td>
+    </tr>
+    <tr>
+      <th>Florida</th>
+      <td>27</td>
+      <td>6.38</td>
+    </tr>
+    <tr>
+      <th>West Virginia</th>
+      <td>3</td>
+      <td>0.57</td>
+    </tr>
+    <tr>
+      <th>Connecticut</th>
+      <td>5</td>
+      <td>1.11</td>
+    </tr>
+    <tr>
+      <th>Arkansas</th>
+      <td>4</td>
+      <td>0.93</td>
+    </tr>
+    <tr>
+      <th>Kentucky</th>
+      <td>6</td>
+      <td>1.37</td>
+    </tr>
+    <tr>
+      <th>Oregon</th>
+      <td>5</td>
+      <td>1.27</td>
+    </tr>
+    <tr>
+      <th>New Mexico</th>
+      <td>3</td>
+      <td>0.64</td>
+    </tr>
+    <tr>
+      <th>Louisiana</th>
+      <td>6</td>
+      <td>1.45</td>
+    </tr>
+    <tr>
+      <th>Georgia</th>
+      <td>14</td>
+      <td>3.19</td>
+    </tr>
+    <tr>
+      <th>Vermont</th>
+      <td>1</td>
+      <td>0.19</td>
+    </tr>
+    <tr>
+      <th>Pennsylvania</th>
+      <td>18</td>
+      <td>3.96</td>
+    </tr>
+    <tr>
+      <th>North Carolina</th>
+      <td>13</td>
+      <td>3.14</td>
+    </tr>
+    <tr>
+      <th>Maryland</th>
+      <td>8</td>
+      <td>1.86</td>
+    </tr>
+    <tr>
+      <th>California</th>
+      <td>53</td>
+      <td>12.15</td>
+    </tr>
+    <tr>
+      <th>Arizona</th>
+      <td>9</td>
+      <td>2.15</td>
+    </tr>
+    <tr>
+      <th>South Carolina</th>
+      <td>7</td>
+      <td>1.54</td>
+    </tr>
+    <tr>
+      <th>Nebraska</th>
+      <td>3</td>
+      <td>0.59</td>
+    </tr>
+    <tr>
+      <th>Indiana</th>
+      <td>9</td>
+      <td>2.05</td>
+    </tr>
+    <tr>
+      <th>Montana</th>
+      <td>1</td>
+      <td>0.32</td>
+    </tr>
+    <tr>
+      <th>Alaska</th>
+      <td>1</td>
+      <td>0.23</td>
+    </tr>
+    <tr>
+      <th>Mississippi</th>
+      <td>4</td>
+      <td>0.93</td>
+    </tr>
+    <tr>
+      <th>New Hampshire</th>
+      <td>2</td>
+      <td>0.41</td>
+    </tr>
+    <tr>
+      <th>Virginia</th>
+      <td>11</td>
+      <td>2.60</td>
+    </tr>
+    <tr>
+      <th>South Dakota</th>
+      <td>1</td>
+      <td>0.27</td>
+    </tr>
+    <tr>
+      <th>Nevada</th>
+      <td>4</td>
+      <td>0.91</td>
+    </tr>
+    <tr>
+      <th>Michigan</th>
+      <td>14</td>
+      <td>3.07</td>
+    </tr>
+    <tr>
+      <th>Iowa</th>
+      <td>4</td>
+      <td>0.97</td>
+    </tr>
+    <tr>
+      <th>New Jersey</th>
+      <td>12</td>
+      <td>2.77</td>
+    </tr>
+    <tr>
+      <th>Rhode Island</th>
+      <td>2</td>
+      <td>0.33</td>
+    </tr>
+    <tr>
+      <th>Maine</th>
+      <td>2</td>
+      <td>0.41</td>
+    </tr>
+    <tr>
+      <th>Ohio</th>
+      <td>16</td>
+      <td>3.59</td>
+    </tr>
+    <tr>
+      <th>Utah</th>
+      <td>4</td>
+      <td>0.94</td>
+    </tr>
+    <tr>
+      <th>Delaware</th>
+      <td>1</td>
+      <td>0.30</td>
+    </tr>
+    <tr>
+      <th>Alabama</th>
+      <td>7</td>
+      <td>1.51</td>
+    </tr>
+    <tr>
+      <th>Kansas</th>
+      <td>4</td>
+      <td>0.90</td>
+    </tr>
+    <tr>
+      <th>Minnesota</th>
+      <td>8</td>
+      <td>1.71</td>
+    </tr>
+    <tr>
+      <th>Colorado</th>
+      <td>7</td>
+      <td>1.72</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [262]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">newOrderReps</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[262]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(48, 2)
+</pre></div>
+</div>
+</div>
+<div class="section" id="Inner-Join">
+<h2>Inner Join<a class="headerlink" href="#Inner-Join" title="Permalink to this headline">¶</a></h2>
+<p>This is an inner join by default. An inner join means that only rows
+that match in both dataframes will be in the merged dataframe.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [263]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">population</span><span class="p">,</span><span class="n">newOrderReps</span><span class="p">,</span><span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">merged</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[263]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PopEst2016</th>
+      <th>Pop2010</th>
+      <th>Representatives</th>
+      <th>TotalPct</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Florida</th>
+      <td>20612439</td>
+      <td>18804623</td>
+      <td>27</td>
+      <td>6.38</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>12801539</td>
+      <td>12831549</td>
+      <td>18</td>
+      <td>3.96</td>
+    </tr>
+    <tr>
+      <th>Pennsylvania</th>
+      <td>12784227</td>
+      <td>12702887</td>
+      <td>18</td>
+      <td>3.96</td>
+    </tr>
+    <tr>
+      <th>Ohio</th>
+      <td>11614373</td>
+      <td>11536725</td>
+      <td>16</td>
+      <td>3.59</td>
+    </tr>
+    <tr>
+      <th>Georgia</th>
+      <td>10310371</td>
+      <td>9688681</td>
+      <td>14</td>
+      <td>3.19</td>
+    </tr>
+    <tr>
+      <th>North Carolina</th>
+      <td>10146788</td>
+      <td>9535692</td>
+      <td>13</td>
+      <td>3.14</td>
+    </tr>
+    <tr>
+      <th>Michigan</th>
+      <td>9928300</td>
+      <td>9884129</td>
+      <td>14</td>
+      <td>3.07</td>
+    </tr>
+    <tr>
+      <th>New Jersey</th>
+      <td>8944469</td>
+      <td>8791936</td>
+      <td>12</td>
+      <td>2.77</td>
+    </tr>
+    <tr>
+      <th>Virginia</th>
+      <td>8411808</td>
+      <td>8001045</td>
+      <td>11</td>
+      <td>2.60</td>
+    </tr>
+    <tr>
+      <th>Washington</th>
+      <td>7288000</td>
+      <td>6724543</td>
+      <td>10</td>
+      <td>2.26</td>
+    </tr>
+    <tr>
+      <th>Arizona</th>
+      <td>6931071</td>
+      <td>6392307</td>
+      <td>9</td>
+      <td>2.15</td>
+    </tr>
+    <tr>
+      <th>Massachusetts</th>
+      <td>6811779</td>
+      <td>6547817</td>
+      <td>9</td>
+      <td>2.11</td>
+    </tr>
+    <tr>
+      <th>Tennessee</th>
+      <td>6651194</td>
+      <td>6346275</td>
+      <td>9</td>
+      <td>2.06</td>
+    </tr>
+    <tr>
+      <th>Indiana</th>
+      <td>6633053</td>
+      <td>6484229</td>
+      <td>9</td>
+      <td>2.05</td>
+    </tr>
+    <tr>
+      <th>Missouri</th>
+      <td>6093000</td>
+      <td>5988927</td>
+      <td>8</td>
+      <td>1.89</td>
+    </tr>
+    <tr>
+      <th>Maryland</th>
+      <td>6016447</td>
+      <td>5773785</td>
+      <td>8</td>
+      <td>1.86</td>
+    </tr>
+    <tr>
+      <th>Wisconsin</th>
+      <td>5778708</td>
+      <td>5687289</td>
+      <td>8</td>
+      <td>1.79</td>
+    </tr>
+    <tr>
+      <th>Colorado</th>
+      <td>5540545</td>
+      <td>5029324</td>
+      <td>7</td>
+      <td>1.72</td>
+    </tr>
+    <tr>
+      <th>Minnesota</th>
+      <td>5519952</td>
+      <td>5303925</td>
+      <td>8</td>
+      <td>1.71</td>
+    </tr>
+    <tr>
+      <th>South Carolina</th>
+      <td>4961119</td>
+      <td>4625401</td>
+      <td>7</td>
+      <td>1.54</td>
+    </tr>
+    <tr>
+      <th>Alabama</th>
+      <td>4863300</td>
+      <td>4780127</td>
+      <td>7</td>
+      <td>1.51</td>
+    </tr>
+    <tr>
+      <th>Louisiana</th>
+      <td>4681666</td>
+      <td>4533479</td>
+      <td>6</td>
+      <td>1.45</td>
+    </tr>
+    <tr>
+      <th>Kentucky</th>
+      <td>4436974</td>
+      <td>4339349</td>
+      <td>6</td>
+      <td>1.37</td>
+    </tr>
+    <tr>
+      <th>Oregon</th>
+      <td>4093465</td>
+      <td>3831073</td>
+      <td>5</td>
+      <td>1.27</td>
+    </tr>
+    <tr>
+      <th>Oklahoma</th>
+      <td>3923561</td>
+      <td>3751616</td>
+      <td>5</td>
+      <td>1.21</td>
+    </tr>
+    <tr>
+      <th>Connecticut</th>
+      <td>3576452</td>
+      <td>3574118</td>
+      <td>5</td>
+      <td>1.11</td>
+    </tr>
+    <tr>
+      <th>Iowa</th>
+      <td>3134693</td>
+      <td>3046869</td>
+      <td>4</td>
+      <td>0.97</td>
+    </tr>
+    <tr>
+      <th>Utah</th>
+      <td>3051217</td>
+      <td>2763888</td>
+      <td>4</td>
+      <td>0.94</td>
+    </tr>
+    <tr>
+      <th>Mississippi</th>
+      <td>2988726</td>
+      <td>2968103</td>
+      <td>4</td>
+      <td>0.93</td>
+    </tr>
+    <tr>
+      <th>Arkansas</th>
+      <td>2988248</td>
+      <td>2915958</td>
+      <td>4</td>
+      <td>0.93</td>
+    </tr>
+    <tr>
+      <th>Nevada</th>
+      <td>2940058</td>
+      <td>2700691</td>
+      <td>4</td>
+      <td>0.91</td>
+    </tr>
+    <tr>
+      <th>Kansas</th>
+      <td>2907289</td>
+      <td>2853132</td>
+      <td>4</td>
+      <td>0.90</td>
+    </tr>
+    <tr>
+      <th>New Mexico</th>
+      <td>2081015</td>
+      <td>2059192</td>
+      <td>3</td>
+      <td>0.64</td>
+    </tr>
+    <tr>
+      <th>Nebraska</th>
+      <td>1907116</td>
+      <td>1826341</td>
+      <td>3</td>
+      <td>0.59</td>
+    </tr>
+    <tr>
+      <th>West Virginia</th>
+      <td>1831102</td>
+      <td>1853011</td>
+      <td>3</td>
+      <td>0.57</td>
+    </tr>
+    <tr>
+      <th>Idaho</th>
+      <td>1683140</td>
+      <td>1567652</td>
+      <td>2</td>
+      <td>0.52</td>
+    </tr>
+    <tr>
+      <th>Hawaii</th>
+      <td>1428557</td>
+      <td>1360301</td>
+      <td>2</td>
+      <td>0.44</td>
+    </tr>
+    <tr>
+      <th>New Hampshire</th>
+      <td>1334795</td>
+      <td>1316466</td>
+      <td>2</td>
+      <td>0.41</td>
+    </tr>
+    <tr>
+      <th>Maine</th>
+      <td>1331479</td>
+      <td>1328361</td>
+      <td>2</td>
+      <td>0.41</td>
+    </tr>
+    <tr>
+      <th>Rhode Island</th>
+      <td>1056426</td>
+      <td>1052931</td>
+      <td>2</td>
+      <td>0.33</td>
+    </tr>
+    <tr>
+      <th>Montana</th>
+      <td>1042520</td>
+      <td>989417</td>
+      <td>1</td>
+      <td>0.32</td>
+    </tr>
+    <tr>
+      <th>Delaware</th>
+      <td>952065</td>
+      <td>897936</td>
+      <td>1</td>
+      <td>0.30</td>
+    </tr>
+    <tr>
+      <th>South Dakota</th>
+      <td>865454</td>
+      <td>814191</td>
+      <td>1</td>
+      <td>0.27</td>
+    </tr>
+    <tr>
+      <th>North Dakota</th>
+      <td>757952</td>
+      <td>672591</td>
+      <td>1</td>
+      <td>0.24</td>
+    </tr>
+    <tr>
+      <th>Alaska</th>
+      <td>741894</td>
+      <td>710249</td>
+      <td>1</td>
+      <td>0.23</td>
+    </tr>
+    <tr>
+      <th>Vermont</th>
+      <td>624594</td>
+      <td>625745</td>
+      <td>1</td>
+      <td>0.19</td>
+    </tr>
+    <tr>
+      <th>Wyoming</th>
+      <td>585501</td>
+      <td>563767</td>
+      <td>1</td>
+      <td>0.18</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [264]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">merged</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[264]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(47, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Outer-Join">
+<h2>Outer Join<a class="headerlink" href="#Outer-Join" title="Permalink to this headline">¶</a></h2>
+<p>In a concatenation the two dataframes are joined by an outer join. An
+outer join will result in missing values if the two tables do not have
+exactly the same keys. This one required a sort=True because row
+ordering is not identical in both.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [265]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">concatted</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">population</span><span class="p">,</span><span class="n">newOrderReps</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [266]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">concatted</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[266]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PopEst2016</th>
+      <th>Pop2010</th>
+      <th>Representatives</th>
+      <th>TotalPct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alabama</th>
+      <td>4863300.0</td>
+      <td>4780127.0</td>
+      <td>7.0</td>
+      <td>1.51</td>
+    </tr>
+    <tr>
+      <th>Alaska</th>
+      <td>741894.0</td>
+      <td>710249.0</td>
+      <td>1.0</td>
+      <td>0.23</td>
+    </tr>
+    <tr>
+      <th>Arizona</th>
+      <td>6931071.0</td>
+      <td>6392307.0</td>
+      <td>9.0</td>
+      <td>2.15</td>
+    </tr>
+    <tr>
+      <th>Arkansas</th>
+      <td>2988248.0</td>
+      <td>2915958.0</td>
+      <td>4.0</td>
+      <td>0.93</td>
+    </tr>
+    <tr>
+      <th>California</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>53.0</td>
+      <td>12.15</td>
+    </tr>
+    <tr>
+      <th>Colorado</th>
+      <td>5540545.0</td>
+      <td>5029324.0</td>
+      <td>7.0</td>
+      <td>1.72</td>
+    </tr>
+    <tr>
+      <th>Connecticut</th>
+      <td>3576452.0</td>
+      <td>3574118.0</td>
+      <td>5.0</td>
+      <td>1.11</td>
+    </tr>
+    <tr>
+      <th>Delaware</th>
+      <td>952065.0</td>
+      <td>897936.0</td>
+      <td>1.0</td>
+      <td>0.30</td>
+    </tr>
+    <tr>
+      <th>Florida</th>
+      <td>20612439.0</td>
+      <td>18804623.0</td>
+      <td>27.0</td>
+      <td>6.38</td>
+    </tr>
+    <tr>
+      <th>Georgia</th>
+      <td>10310371.0</td>
+      <td>9688681.0</td>
+      <td>14.0</td>
+      <td>3.19</td>
+    </tr>
+    <tr>
+      <th>Hawaii</th>
+      <td>1428557.0</td>
+      <td>1360301.0</td>
+      <td>2.0</td>
+      <td>0.44</td>
+    </tr>
+    <tr>
+      <th>Idaho</th>
+      <td>1683140.0</td>
+      <td>1567652.0</td>
+      <td>2.0</td>
+      <td>0.52</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>12801539.0</td>
+      <td>12831549.0</td>
+      <td>18.0</td>
+      <td>3.96</td>
+    </tr>
+    <tr>
+      <th>Indiana</th>
+      <td>6633053.0</td>
+      <td>6484229.0</td>
+      <td>9.0</td>
+      <td>2.05</td>
+    </tr>
+    <tr>
+      <th>Iowa</th>
+      <td>3134693.0</td>
+      <td>3046869.0</td>
+      <td>4.0</td>
+      <td>0.97</td>
+    </tr>
+    <tr>
+      <th>Kansas</th>
+      <td>2907289.0</td>
+      <td>2853132.0</td>
+      <td>4.0</td>
+      <td>0.90</td>
+    </tr>
+    <tr>
+      <th>Kentucky</th>
+      <td>4436974.0</td>
+      <td>4339349.0</td>
+      <td>6.0</td>
+      <td>1.37</td>
+    </tr>
+    <tr>
+      <th>Louisiana</th>
+      <td>4681666.0</td>
+      <td>4533479.0</td>
+      <td>6.0</td>
+      <td>1.45</td>
+    </tr>
+    <tr>
+      <th>Maine</th>
+      <td>1331479.0</td>
+      <td>1328361.0</td>
+      <td>2.0</td>
+      <td>0.41</td>
+    </tr>
+    <tr>
+      <th>Maryland</th>
+      <td>6016447.0</td>
+      <td>5773785.0</td>
+      <td>8.0</td>
+      <td>1.86</td>
+    </tr>
+    <tr>
+      <th>Massachusetts</th>
+      <td>6811779.0</td>
+      <td>6547817.0</td>
+      <td>9.0</td>
+      <td>2.11</td>
+    </tr>
+    <tr>
+      <th>Michigan</th>
+      <td>9928300.0</td>
+      <td>9884129.0</td>
+      <td>14.0</td>
+      <td>3.07</td>
+    </tr>
+    <tr>
+      <th>Minnesota</th>
+      <td>5519952.0</td>
+      <td>5303925.0</td>
+      <td>8.0</td>
+      <td>1.71</td>
+    </tr>
+    <tr>
+      <th>Mississippi</th>
+      <td>2988726.0</td>
+      <td>2968103.0</td>
+      <td>4.0</td>
+      <td>0.93</td>
+    </tr>
+    <tr>
+      <th>Missouri</th>
+      <td>6093000.0</td>
+      <td>5988927.0</td>
+      <td>8.0</td>
+      <td>1.89</td>
+    </tr>
+    <tr>
+      <th>Montana</th>
+      <td>1042520.0</td>
+      <td>989417.0</td>
+      <td>1.0</td>
+      <td>0.32</td>
+    </tr>
+    <tr>
+      <th>Nebraska</th>
+      <td>1907116.0</td>
+      <td>1826341.0</td>
+      <td>3.0</td>
+      <td>0.59</td>
+    </tr>
+    <tr>
+      <th>Nevada</th>
+      <td>2940058.0</td>
+      <td>2700691.0</td>
+      <td>4.0</td>
+      <td>0.91</td>
+    </tr>
+    <tr>
+      <th>New Hampshire</th>
+      <td>1334795.0</td>
+      <td>1316466.0</td>
+      <td>2.0</td>
+      <td>0.41</td>
+    </tr>
+    <tr>
+      <th>New Jersey</th>
+      <td>8944469.0</td>
+      <td>8791936.0</td>
+      <td>12.0</td>
+      <td>2.77</td>
+    </tr>
+    <tr>
+      <th>New Mexico</th>
+      <td>2081015.0</td>
+      <td>2059192.0</td>
+      <td>3.0</td>
+      <td>0.64</td>
+    </tr>
+    <tr>
+      <th>New York</th>
+      <td>19745289.0</td>
+      <td>19378087.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>North Carolina</th>
+      <td>10146788.0</td>
+      <td>9535692.0</td>
+      <td>13.0</td>
+      <td>3.14</td>
+    </tr>
+    <tr>
+      <th>North Dakota</th>
+      <td>757952.0</td>
+      <td>672591.0</td>
+      <td>1.0</td>
+      <td>0.24</td>
+    </tr>
+    <tr>
+      <th>Ohio</th>
+      <td>11614373.0</td>
+      <td>11536725.0</td>
+      <td>16.0</td>
+      <td>3.59</td>
+    </tr>
+    <tr>
+      <th>Oklahoma</th>
+      <td>3923561.0</td>
+      <td>3751616.0</td>
+      <td>5.0</td>
+      <td>1.21</td>
+    </tr>
+    <tr>
+      <th>Oregon</th>
+      <td>4093465.0</td>
+      <td>3831073.0</td>
+      <td>5.0</td>
+      <td>1.27</td>
+    </tr>
+    <tr>
+      <th>Pennsylvania</th>
+      <td>12784227.0</td>
+      <td>12702887.0</td>
+      <td>18.0</td>
+      <td>3.96</td>
+    </tr>
+    <tr>
+      <th>Rhode Island</th>
+      <td>1056426.0</td>
+      <td>1052931.0</td>
+      <td>2.0</td>
+      <td>0.33</td>
+    </tr>
+    <tr>
+      <th>South Carolina</th>
+      <td>4961119.0</td>
+      <td>4625401.0</td>
+      <td>7.0</td>
+      <td>1.54</td>
+    </tr>
+    <tr>
+      <th>South Dakota</th>
+      <td>865454.0</td>
+      <td>814191.0</td>
+      <td>1.0</td>
+      <td>0.27</td>
+    </tr>
+    <tr>
+      <th>Tennessee</th>
+      <td>6651194.0</td>
+      <td>6346275.0</td>
+      <td>9.0</td>
+      <td>2.06</td>
+    </tr>
+    <tr>
+      <th>Texas</th>
+      <td>27862596.0</td>
+      <td>25146105.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Utah</th>
+      <td>3051217.0</td>
+      <td>2763888.0</td>
+      <td>4.0</td>
+      <td>0.94</td>
+    </tr>
+    <tr>
+      <th>Vermont</th>
+      <td>624594.0</td>
+      <td>625745.0</td>
+      <td>1.0</td>
+      <td>0.19</td>
+    </tr>
+    <tr>
+      <th>Virginia</th>
+      <td>8411808.0</td>
+      <td>8001045.0</td>
+      <td>11.0</td>
+      <td>2.60</td>
+    </tr>
+    <tr>
+      <th>Washington</th>
+      <td>7288000.0</td>
+      <td>6724543.0</td>
+      <td>10.0</td>
+      <td>2.26</td>
+    </tr>
+    <tr>
+      <th>West Virginia</th>
+      <td>1831102.0</td>
+      <td>1853011.0</td>
+      <td>3.0</td>
+      <td>0.57</td>
+    </tr>
+    <tr>
+      <th>Wisconsin</th>
+      <td>5778708.0</td>
+      <td>5687289.0</td>
+      <td>8.0</td>
+      <td>1.79</td>
+    </tr>
+    <tr>
+      <th>Wyoming</th>
+      <td>585501.0</td>
+      <td>563767.0</td>
+      <td>1.0</td>
+      <td>0.18</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [267]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">concatted</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[267]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(50, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Left-Join">
+<h2>Left Join<a class="headerlink" href="#Left-Join" title="Permalink to this headline">¶</a></h2>
+<p>A <em>left join</em> joins the left table (e.g.&nbsp;population in this case) to the
+right table preserving the rows of the left table and filling in new
+columns from the right table where available. If values for the new
+column are not specified in the right table, N/A is used to fill them
+in.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [268]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">leftJoin</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">newOrderReps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [269]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">leftJoin</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[269]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PopEst2016</th>
+      <th>Pop2010</th>
+      <th>Representatives</th>
+      <th>TotalPct</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Texas</th>
+      <td>27862596</td>
+      <td>25146105</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Florida</th>
+      <td>20612439</td>
+      <td>18804623</td>
+      <td>27.0</td>
+      <td>6.38</td>
+    </tr>
+    <tr>
+      <th>New York</th>
+      <td>19745289</td>
+      <td>19378087</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>12801539</td>
+      <td>12831549</td>
+      <td>18.0</td>
+      <td>3.96</td>
+    </tr>
+    <tr>
+      <th>Pennsylvania</th>
+      <td>12784227</td>
+      <td>12702887</td>
+      <td>18.0</td>
+      <td>3.96</td>
+    </tr>
+    <tr>
+      <th>Ohio</th>
+      <td>11614373</td>
+      <td>11536725</td>
+      <td>16.0</td>
+      <td>3.59</td>
+    </tr>
+    <tr>
+      <th>Georgia</th>
+      <td>10310371</td>
+      <td>9688681</td>
+      <td>14.0</td>
+      <td>3.19</td>
+    </tr>
+    <tr>
+      <th>North Carolina</th>
+      <td>10146788</td>
+      <td>9535692</td>
+      <td>13.0</td>
+      <td>3.14</td>
+    </tr>
+    <tr>
+      <th>Michigan</th>
+      <td>9928300</td>
+      <td>9884129</td>
+      <td>14.0</td>
+      <td>3.07</td>
+    </tr>
+    <tr>
+      <th>New Jersey</th>
+      <td>8944469</td>
+      <td>8791936</td>
+      <td>12.0</td>
+      <td>2.77</td>
+    </tr>
+    <tr>
+      <th>Virginia</th>
+      <td>8411808</td>
+      <td>8001045</td>
+      <td>11.0</td>
+      <td>2.60</td>
+    </tr>
+    <tr>
+      <th>Washington</th>
+      <td>7288000</td>
+      <td>6724543</td>
+      <td>10.0</td>
+      <td>2.26</td>
+    </tr>
+    <tr>
+      <th>Arizona</th>
+      <td>6931071</td>
+      <td>6392307</td>
+      <td>9.0</td>
+      <td>2.15</td>
+    </tr>
+    <tr>
+      <th>Massachusetts</th>
+      <td>6811779</td>
+      <td>6547817</td>
+      <td>9.0</td>
+      <td>2.11</td>
+    </tr>
+    <tr>
+      <th>Tennessee</th>
+      <td>6651194</td>
+      <td>6346275</td>
+      <td>9.0</td>
+      <td>2.06</td>
+    </tr>
+    <tr>
+      <th>Indiana</th>
+      <td>6633053</td>
+      <td>6484229</td>
+      <td>9.0</td>
+      <td>2.05</td>
+    </tr>
+    <tr>
+      <th>Missouri</th>
+      <td>6093000</td>
+      <td>5988927</td>
+      <td>8.0</td>
+      <td>1.89</td>
+    </tr>
+    <tr>
+      <th>Maryland</th>
+      <td>6016447</td>
+      <td>5773785</td>
+      <td>8.0</td>
+      <td>1.86</td>
+    </tr>
+    <tr>
+      <th>Wisconsin</th>
+      <td>5778708</td>
+      <td>5687289</td>
+      <td>8.0</td>
+      <td>1.79</td>
+    </tr>
+    <tr>
+      <th>Colorado</th>
+      <td>5540545</td>
+      <td>5029324</td>
+      <td>7.0</td>
+      <td>1.72</td>
+    </tr>
+    <tr>
+      <th>Minnesota</th>
+      <td>5519952</td>
+      <td>5303925</td>
+      <td>8.0</td>
+      <td>1.71</td>
+    </tr>
+    <tr>
+      <th>South Carolina</th>
+      <td>4961119</td>
+      <td>4625401</td>
+      <td>7.0</td>
+      <td>1.54</td>
+    </tr>
+    <tr>
+      <th>Alabama</th>
+      <td>4863300</td>
+      <td>4780127</td>
+      <td>7.0</td>
+      <td>1.51</td>
+    </tr>
+    <tr>
+      <th>Louisiana</th>
+      <td>4681666</td>
+      <td>4533479</td>
+      <td>6.0</td>
+      <td>1.45</td>
+    </tr>
+    <tr>
+      <th>Kentucky</th>
+      <td>4436974</td>
+      <td>4339349</td>
+      <td>6.0</td>
+      <td>1.37</td>
+    </tr>
+    <tr>
+      <th>Oregon</th>
+      <td>4093465</td>
+      <td>3831073</td>
+      <td>5.0</td>
+      <td>1.27</td>
+    </tr>
+    <tr>
+      <th>Oklahoma</th>
+      <td>3923561</td>
+      <td>3751616</td>
+      <td>5.0</td>
+      <td>1.21</td>
+    </tr>
+    <tr>
+      <th>Connecticut</th>
+      <td>3576452</td>
+      <td>3574118</td>
+      <td>5.0</td>
+      <td>1.11</td>
+    </tr>
+    <tr>
+      <th>Iowa</th>
+      <td>3134693</td>
+      <td>3046869</td>
+      <td>4.0</td>
+      <td>0.97</td>
+    </tr>
+    <tr>
+      <th>Utah</th>
+      <td>3051217</td>
+      <td>2763888</td>
+      <td>4.0</td>
+      <td>0.94</td>
+    </tr>
+    <tr>
+      <th>Mississippi</th>
+      <td>2988726</td>
+      <td>2968103</td>
+      <td>4.0</td>
+      <td>0.93</td>
+    </tr>
+    <tr>
+      <th>Arkansas</th>
+      <td>2988248</td>
+      <td>2915958</td>
+      <td>4.0</td>
+      <td>0.93</td>
+    </tr>
+    <tr>
+      <th>Nevada</th>
+      <td>2940058</td>
+      <td>2700691</td>
+      <td>4.0</td>
+      <td>0.91</td>
+    </tr>
+    <tr>
+      <th>Kansas</th>
+      <td>2907289</td>
+      <td>2853132</td>
+      <td>4.0</td>
+      <td>0.90</td>
+    </tr>
+    <tr>
+      <th>New Mexico</th>
+      <td>2081015</td>
+      <td>2059192</td>
+      <td>3.0</td>
+      <td>0.64</td>
+    </tr>
+    <tr>
+      <th>Nebraska</th>
+      <td>1907116</td>
+      <td>1826341</td>
+      <td>3.0</td>
+      <td>0.59</td>
+    </tr>
+    <tr>
+      <th>West Virginia</th>
+      <td>1831102</td>
+      <td>1853011</td>
+      <td>3.0</td>
+      <td>0.57</td>
+    </tr>
+    <tr>
+      <th>Idaho</th>
+      <td>1683140</td>
+      <td>1567652</td>
+      <td>2.0</td>
+      <td>0.52</td>
+    </tr>
+    <tr>
+      <th>Hawaii</th>
+      <td>1428557</td>
+      <td>1360301</td>
+      <td>2.0</td>
+      <td>0.44</td>
+    </tr>
+    <tr>
+      <th>New Hampshire</th>
+      <td>1334795</td>
+      <td>1316466</td>
+      <td>2.0</td>
+      <td>0.41</td>
+    </tr>
+    <tr>
+      <th>Maine</th>
+      <td>1331479</td>
+      <td>1328361</td>
+      <td>2.0</td>
+      <td>0.41</td>
+    </tr>
+    <tr>
+      <th>Rhode Island</th>
+      <td>1056426</td>
+      <td>1052931</td>
+      <td>2.0</td>
+      <td>0.33</td>
+    </tr>
+    <tr>
+      <th>Montana</th>
+      <td>1042520</td>
+      <td>989417</td>
+      <td>1.0</td>
+      <td>0.32</td>
+    </tr>
+    <tr>
+      <th>Delaware</th>
+      <td>952065</td>
+      <td>897936</td>
+      <td>1.0</td>
+      <td>0.30</td>
+    </tr>
+    <tr>
+      <th>South Dakota</th>
+      <td>865454</td>
+      <td>814191</td>
+      <td>1.0</td>
+      <td>0.27</td>
+    </tr>
+    <tr>
+      <th>North Dakota</th>
+      <td>757952</td>
+      <td>672591</td>
+      <td>1.0</td>
+      <td>0.24</td>
+    </tr>
+    <tr>
+      <th>Alaska</th>
+      <td>741894</td>
+      <td>710249</td>
+      <td>1.0</td>
+      <td>0.23</td>
+    </tr>
+    <tr>
+      <th>Vermont</th>
+      <td>624594</td>
+      <td>625745</td>
+      <td>1.0</td>
+      <td>0.19</td>
+    </tr>
+    <tr>
+      <th>Wyoming</th>
+      <td>585501</td>
+      <td>563767</td>
+      <td>1.0</td>
+      <td>0.18</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [270]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">leftJoin</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[270]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(49, 4)
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Data Visualization by Kent D. Lee (and others)</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Kent D. Lee.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.
+    </div>
+  </body>
+</html>
